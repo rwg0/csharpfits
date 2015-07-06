@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +114,7 @@
     <Compile Include="tests\nom\tam\util\BufferedFileTester.cs" />
     <Compile Include="tests\nom\tam\util\ByteFormatParseTester.cs" />
     <Compile Include="tests\nom\tam\util\HashedListTester.cs" />
+    <Compile Include="tests\sharpcap\TestFitsWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
