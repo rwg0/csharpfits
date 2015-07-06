@@ -17,8 +17,9 @@ namespace nom.tam.fits
         public void TestFitsCopy( /*String[] args*/ )
         {
 
-            String file = "..\\..\\testdocs\\ht1.fits" /*args[0]*/;
 
+            String file = Path.GetTempFileName();
+            File.Copy("..\\..\\testdocs\\ht1.fits", file, true);
             Fits f = new Fits(file);
             int i = 0;
             BasicHDU h;

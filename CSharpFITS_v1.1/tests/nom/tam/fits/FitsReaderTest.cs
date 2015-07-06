@@ -17,7 +17,9 @@ namespace nom.tam.fits
         [Test]
         public void TestFits()
         {
-            Fits f = new Fits(new FileStream("..\\..\\testdocs\\ht1.fits",FileMode.Open),false);
+            String file = Path.GetTempFileName();
+            File.Copy("..\\..\\testdocs\\ht1.fits", file, true);
+            Fits f = new Fits(new FileStream(file,FileMode.Open),false);
             // Fits f = new Fits(new FileStream("E:\\CSharpFITSIO\\AISCHV3_228_13637_0001_sv09-fd-int.fits.gz",FileMode.Open),true);
              //Fits f = new Fits(new FileStream("E:\\CSharpFITSIO\\LAB-2.0kms.fits",FileMode.Open),false);
             // Fits f = new Fits("http://skyview.gsfc.nasa.gov/cgi-bin/images?position=180.0%2C8.0&survey=NEAT&pixels=300%2C300&sampler=Clip&size=0.3%2C0.3&projection=Tan&coordinates=J2000.0&return=FITS");
@@ -52,7 +54,9 @@ namespace nom.tam.fits
         [Test]
         public void TestReadBuffered()
         {
-            BufferedFile bf = new BufferedFile("..\\..\\testdocs\\ht1.fits", FileAccess.Read, FileShare.None);
+            String file = Path.GetTempFileName();
+            File.Copy("..\\..\\testdocs\\ht1.fits", file, true);
+            BufferedFile bf = new BufferedFile(file, FileAccess.Read, FileShare.None);
             
             Header       h        = Header.ReadHeader(bf);
             long n = h.DataSize;

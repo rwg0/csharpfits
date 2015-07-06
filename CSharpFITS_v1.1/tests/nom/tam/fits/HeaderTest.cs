@@ -24,6 +24,7 @@ namespace nom.tam.fits
             Fits f = new Fits();
 
             ImageHDU hdu = (ImageHDU)Fits.MakeHDU(img);
+
             BufferedFile bf = new BufferedFile("ht1.fits", FileAccess.ReadWrite, FileShare.ReadWrite);
             f.AddHDU(hdu);
             f.Write(bf);

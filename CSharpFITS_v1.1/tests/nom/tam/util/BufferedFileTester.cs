@@ -45,7 +45,9 @@ namespace nom.tam.util
         public void TestBufferedFile()
         {
             string[] args = new string[1];
-            args[0] = "..\\..\\testdocs\\ht1.fits";
+            String file = Path.GetTempFileName();
+            File.Copy("..\\..\\testdocs\\ht1.fits", file, true);
+            args[0] = file;
 
             System.String filename = args[0];
             int dim = 1000;
