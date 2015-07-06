@@ -1,3 +1,5 @@
+using nom.tam.fits;
+
 namespace nom.tam.util
 {
 	using System;

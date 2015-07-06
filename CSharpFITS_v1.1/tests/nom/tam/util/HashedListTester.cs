@@ -1,3 +1,5 @@
+using nom.tam.fits;
+
 namespace nom.tam.util
 {
     /* Copyright: Thomas McGlynn 1999.

@@ -1,4 +1,5 @@
 using System;
+using nom.tam.fits;
 using ArrayFuncs = nom.tam.util.ArrayFuncs;
 using NUnit.Framework;
 

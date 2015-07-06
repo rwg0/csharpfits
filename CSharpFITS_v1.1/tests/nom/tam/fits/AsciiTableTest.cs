@@ -357,4 +357,52 @@ namespace nom.tam.fits
         }
 
     }
+
+    public class Assertion
+    {
+        public static void AssertEquals(string message, int expected, int actual)
+        {
+            Assert.AreEqual(expected, actual, message);
+        }
+
+        public static void AssertEquals(string message, Type expected, Type actual)
+        {
+            Assert.AreEqual(expected, actual, message);
+        }
+
+        public static void AssertEquals(string message, object expected, object actual)
+        {
+            Assert.AreEqual(expected, actual, message);
+        }
+
+        internal static void AssertEquals(string message, long expected, long actual)
+        {
+            Assert.AreEqual(expected, actual, message);
+        }
+
+        internal static void AssertEquals(string message, string expected, string actual)
+        {
+            Assert.AreEqual(expected, actual, message);
+        }
+
+        internal static void AssertEquals(string message, bool expected, bool actual)
+        {
+            Assert.AreEqual(expected, actual, message);
+        }
+
+        internal static void AssertEquals(string message, double expected, double actual, double delta = 0)
+        {
+            Assert.AreEqual(expected, actual, delta, message );
+        }
+
+        internal static void AssertEquals(string message, float expected, float actual, double delta = 0)
+        {
+            Assert.AreEqual(expected, actual, delta, message);
+        }
+
+        public static void AssertNull(string message, object o)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
