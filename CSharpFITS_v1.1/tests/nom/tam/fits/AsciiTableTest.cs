@@ -402,7 +402,7 @@ namespace nom.tam.fits
 
         public static void AssertNull(string message, object o)
         {
-            throw new NotImplementedException();
+            Assert.IsNull(o, message);
         }
     }
 }
