@@ -25,6 +25,28 @@ namespace CSharpFITS_v1._1.tests.sharpcap
         }
 
 
+        [Test]
+        public void TestWrite16bpp()
+        {
+            ABitLikeFitsFileWriter ablffw = new ABitLikeFitsFileWriter(16, ABitLikeFitsFileWriter.ColourSpaceId.Bayer_BGGR,2, new Size(1024, 1024), 1);
+
+            var cb = 1024 * 1024 * 2;
+            var buffer = Marshal.AllocCoTaskMem(cb);
+            ablffw.WriteFrameImpl(buffer, cb, new ABitLikeFitsFileWriter.RawFrameInfo() { Binning = 1, CameraName = "Test", ColourSpace = ABitLikeFitsFileWriter.ColourSpaceId.Bayer_BGGR, ExposureMs = 1.0, Width = 1024, Height = 1024 });
+        }
+
+        [Test]
+        public void TestWrite16bppBig()
+        {
+            var size = new Size(6000,4000);
+            ABitLikeFitsFileWriter ablffw = new ABitLikeFitsFileWriter(16, ABitLikeFitsFileWriter.ColourSpaceId.Bayer_BGGR, 2, size, 1);
+
+            var cb = size.Width * size.Height* 2;
+            var buffer = Marshal.AllocCoTaskMem(cb);
+            ablffw.WriteFrameImpl(buffer, cb, new ABitLikeFitsFileWriter.RawFrameInfo() { Binning = 1, CameraName = "Test", ColourSpace = ABitLikeFitsFileWriter.ColourSpaceId.Bayer_BGGR, ExposureMs = 1.0, Width = size.Width, Height = size.Height });
+        }
+
+
         private class ABitLikeFitsFileWriter
         {
             private int _significantBitDepth;
@@ -225,8 +247,9 @@ namespace CSharpFITS_v1._1.tests.sharpcap
                         result[plane] = new int[_size.Height][];
                         for (int j = 0; j < _size.Height; j++)
                         {
-                            result[plane][j] = new int[_size.Width];
-                            for (int i = 0; i < _size.Width; i++)
+                            var width = _size.Width;
+                            result[plane][j] = new int[width];
+                            for (int i = 0; i < width; i++)
                             {
                                 result[plane][j][i] = (int) ((rawData[index] << leftShift) >> rightShift);
                                 index += _colourPlanes;
@@ -242,8 +265,9 @@ namespace CSharpFITS_v1._1.tests.sharpcap
                     int index = 0;
                     for (int j = 0; j < _size.Height; j++)
                     {
-                        result[j] = new int[_size.Width];
-                        for (int i = 0; i < _size.Width; i++)
+                        var width = _size.Width;
+                        result[j] = new int[width];
+                        for (int i = 0; i < width; i++)
                         {
                             result[j][i] = (int) ((rawData[index] << leftShift) >> rightShift);
                             index++;
@@ -267,8 +291,9 @@ namespace CSharpFITS_v1._1.tests.sharpcap
                         result[plane] = new short[_size.Height][];
                         for (int j = 0; j < _size.Height; j++)
                         {
-                            result[plane][j] = new short[_size.Width];
-                            for (int i = 0; i < _size.Width; i++)
+                            var width = _size.Width;
+                            result[plane][j] = new short[width];
+                            for (int i = 0; i < width; i++)
                             {
                                 result[plane][j][i] = (short) ((rawData[index] << leftShift));
                                 index += _colourPlanes;
@@ -284,8 +309,9 @@ namespace CSharpFITS_v1._1.tests.sharpcap
                     int index = 0;
                     for (int j = 0; j < _size.Height; j++)
                     {
-                        result[j] = new short[_size.Width];
-                        for (int i = 0; i < _size.Width; i++)
+                        var width = _size.Width;
+                        result[j] = new short[width];
+                        for (int i = 0; i < width; i++)
                         {
                             result[j][i] = (short) ((rawData[index] << leftShift));
                             index++;
@@ -314,8 +340,9 @@ namespace CSharpFITS_v1._1.tests.sharpcap
                         result[plane] = new short[_size.Height][];
                         for (int j = 0; j < _size.Height; j++)
                         {
-                            result[plane][j] = new short[_size.Width];
-                            for (int i = 0; i < _size.Width; i++)
+                            var width = _size.Width;
+                            result[plane][j] = new short[width];
+                            for (int i = 0; i < width; i++)
                             {
                                 result[plane][j][i] = (short) (((rawData[index] << leftShift) >> rightShift) - 32768);
                                 index += _colourPlanes;
@@ -331,8 +358,9 @@ namespace CSharpFITS_v1._1.tests.sharpcap
                     int index = 0;
                     for (int j = 0; j < _size.Height; j++)
                     {
-                        result[j] = new short[_size.Width];
-                        for (int i = 0; i < _size.Width; i++)
+                        var width = _size.Width;
+                        result[j] = new short[width];
+                        for (int i = 0; i < width; i++)
                         {
                             result[j][i] = (short) (((rawData[index] << leftShift) >> rightShift) - 32768);
                             index++;

@@ -147,18 +147,18 @@ namespace nom.tam.util
                 {
                     int size = 0;
 
-                    //if (t.HasElementType && t.GetElementType().IsPrimitive)
-                    //{
-                    //    var array = (Array) o;
-                    //    if (array.Length > 0)
-                    //    {
-                    //        IEnumerator i = ((Array) o).GetEnumerator();
-                    //        i.MoveNext();
+                    if (t.HasElementType && t.GetElementType().IsPrimitive)
+                    {
+                        var array = (Array) o;
+                        if (array.Length > 0)
+                        {
+                            IEnumerator i = ((Array) o).GetEnumerator();
+                            i.MoveNext();
 
-                    //        size += array.Length*ComputeSize(i.Current);
-                    //    }
-                    //}
-                    //else
+                            size += array.Length*ComputeSize(i.Current);
+                        }
+                    }
+                    else
                     {
                         for (IEnumerator i = ((Array)o).GetEnumerator(); i.MoveNext(); )
                         {
@@ -341,40 +341,44 @@ namespace nom.tam.util
                         if (temp is Array)
                         {
                             // if the array is 1D with no elements defined in it.
-                            if (((Array)temp).Length == 0)
+                            var array = (Array)temp;
+                            if (array.Length == 0)
                             {
                                 done = true;
                             }
                             // else check for the element type whether it is an Array or not.
-                            else if (((Array)temp).GetValue(0) is Array)
+                            else if (array.GetValue(0) is Array)
                             {
-                                temp = ((Array)temp).GetValue(0);
+                                temp = array.GetValue(0);
                                 ndim++;
                                 continue;
                             }
 
                             // if there is only one element at a particular dimension with data of type primitive.
-                            if (((Array)temp).Length == 1)
+                            if (array.Length == 1)
                             {
                                 done = true;
                             }
 
-                            for (int i = 1; i < ((Array)temp).Length; i++)
+                            if (array.GetType().HasElementType && array.GetType().GetElementType().IsPrimitive)
                             {
-                                if (((Array)temp).GetValue(i) is Array)
+                                done = true;
+                            }
+                            else
+                            {
+                                for (int i = 1; i < array.Length; i++)
                                 {
-                                    temp = ((Array)o).GetValue(i);
-                                    ndim++;
-                                    break;
-                                }
-                                else if (i != ((Array)temp).Length - 1)
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    done = true;
-                                    break;
+                                    if (array.GetValue(i) is Array)
+                                    {
+                                        temp = ((Array)o).GetValue(i);
+                                        ndim++;
+                                        break;
+                                    }
+                                    if (i == array.Length - 1)
+                                    {
+                                        done = true;
+                                        break;
+                                    }
                                 }
                             }
                         }
