@@ -1,4 +1,7 @@
 // Member of the utility package.
+
+using System.Runtime.InteropServices;
+
 namespace nom.tam.util
 {
     /*
@@ -144,9 +147,23 @@ namespace nom.tam.util
                 {
                     int size = 0;
 
-                    for (IEnumerator i = ((Array)o).GetEnumerator(); i.MoveNext(); )
+                    //if (t.HasElementType && t.GetElementType().IsPrimitive)
+                    //{
+                    //    var array = (Array) o;
+                    //    if (array.Length > 0)
+                    //    {
+                    //        IEnumerator i = ((Array) o).GetEnumerator();
+                    //        i.MoveNext();
+
+                    //        size += array.Length*ComputeSize(i.Current);
+                    //    }
+                    //}
+                    //else
                     {
-                        size += ComputeSize(i.Current);
+                        for (IEnumerator i = ((Array)o).GetEnumerator(); i.MoveNext(); )
+                        {
+                            size += ComputeSize(i.Current);
+                        }
                     }
 
                     //return size;
