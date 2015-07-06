@@ -893,14 +893,19 @@ namespace nom.tam.util
             byte bPrime = 0;
             for (int nWritten = 0, b = 0; nWritten < size; ++nWritten, b += intByteStride)
             {
-                byte[] tbuf = BitConverter.GetBytes(buf[nWritten + offset]);
-                bPrime = tbuf[0];
-                tbuf[0] = tbuf[3];
-                tbuf[3] = bPrime;
-                bPrime = tbuf[1];
-                tbuf[1] = tbuf[2];
-                tbuf[2] = bPrime;
-                Buffer.BlockCopy(tbuf, 0, _outBuf, b, intByteStride);
+                int val = buf[nWritten + offset];
+                _outBuf[b] = (byte)(val >> 24);
+                _outBuf[b + 1] = (byte)((val >> 16) & 0xFF);
+                _outBuf[b + 2] = (byte)((val >> 8) & 0xFF);
+                _outBuf[b + 3] = (byte)(val & 0xFF);
+                //byte[] tbuf = BitConverter.GetBytes(buf[nWritten + offset]);
+                //bPrime = tbuf[0];
+                //tbuf[0] = tbuf[3];
+                //tbuf[3] = bPrime;
+                //bPrime = tbuf[1];
+                //tbuf[1] = tbuf[2];
+                //tbuf[2] = bPrime;
+                //Buffer.BlockCopy(tbuf, 0, _outBuf, b, intByteStride);
             }
             _out.Write(_outBuf, 0, intByteStride * size);
         }
