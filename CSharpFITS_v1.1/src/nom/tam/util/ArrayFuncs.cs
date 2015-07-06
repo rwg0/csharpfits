@@ -247,7 +247,6 @@ namespace nom.tam.util
 
                 return result;
             }
-            return null;
         }
 
         /// <summary>Clone an Object if possible.

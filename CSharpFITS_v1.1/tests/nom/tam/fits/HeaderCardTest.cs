@@ -45,7 +45,7 @@ namespace nom.tam.fits
                 //
                 p = new HeaderCard("VALUE   = '   ");
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 thrown = true;
             }
@@ -86,7 +86,7 @@ namespace nom.tam.fits
             {
                 p = new HeaderCard("LONGKEYWORD", 123, "COMMENT");
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 thrown = true;
             }
@@ -98,7 +98,7 @@ namespace nom.tam.fits
             {
                 p = new HeaderCard("KEY", lng, "COMMENT");
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 thrown = true;
             }
@@ -117,7 +117,7 @@ namespace nom.tam.fits
             {
                 hc = new HeaderCard(key, 123, "Comment");
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 thrown = true;
             }

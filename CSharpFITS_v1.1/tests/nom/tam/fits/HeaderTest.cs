@@ -206,7 +206,7 @@ namespace nom.tam.fits
             {
                 hdr.Rewrite();
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 thrown = true;
             }

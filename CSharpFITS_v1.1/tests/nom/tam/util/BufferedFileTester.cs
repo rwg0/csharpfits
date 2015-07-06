@@ -45,7 +45,7 @@ namespace nom.tam.util
         public void TestBufferedFile()
         {
             string[] args = new string[1];
-            args[0] = "E:\\CSharpFITSIO\\nph-im.fits";
+            args[0] = "..\\..\\testdocs\\ht1.fits";
 
             System.String filename = args[0];
             int dim = 1000;

@@ -45,7 +45,7 @@ namespace nom.tam.fits
                 FitsDate fd = new FitsDate(arg);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return false;
             }

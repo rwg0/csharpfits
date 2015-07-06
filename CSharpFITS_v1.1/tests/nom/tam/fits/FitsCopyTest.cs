@@ -17,7 +17,7 @@ namespace nom.tam.fits
         public void TestFitsCopy( /*String[] args*/ )
         {
 
-            String file = "E:\\CSharpFITSIO\\AISCHV3_228_13637_0001_sv09-fd-int.fits" /*args[0]*/;
+            String file = "..\\..\\testdocs\\ht1.fits" /*args[0]*/;
 
             Fits f = new Fits(file);
             int i = 0;

@@ -192,7 +192,7 @@ namespace nom.tam.util
 	    bool thrown = false;
 	    try {
 	        offset = bf.format(val, buffer, 0, 6);
-	    } catch (TruncationException e) {
+	    } catch (TruncationException ) {
 		thrown = true;
 	    }
 	    if (i < 6) {

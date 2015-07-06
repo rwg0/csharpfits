@@ -448,7 +448,7 @@ namespace nom.tam.fits
 				{
 					return FitsFactory.HDUFactory(new int[0]);
 				}
-				catch(FitsException fe)
+				catch(FitsException )
 				{
 					Console.Error.WriteLine("Impossible exception in GetDummyHDU");
 					return null;

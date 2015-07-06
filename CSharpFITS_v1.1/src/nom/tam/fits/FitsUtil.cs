@@ -123,7 +123,7 @@ namespace nom.tam.fits
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 // Ignore for the moment, but we'll probably fail when we
                 // read this file.  However we don't know for sure
