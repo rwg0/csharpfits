@@ -341,8 +341,8 @@ namespace nom.tam.util
             {
                 this.enclosingInstance = enclosingInstance;
                 current = start;
-                System.Console.Out.WriteLine("------------------------------------------");
-                System.Console.Out.WriteLine("Cursor Started from position: #" + current);
+                //System.Console.Out.WriteLine("------------------------------------------");
+                //System.Console.Out.WriteLine("Cursor Started from position: #" + current);
             }
 
             protected HashedList Enclosing_Instance
