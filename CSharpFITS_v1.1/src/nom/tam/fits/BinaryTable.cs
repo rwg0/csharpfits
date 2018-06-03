@@ -1,3 +1,7 @@
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("CSharpFITS.Test")]
+
 namespace nom.tam.fits
 {
     /*

@@ -13,7 +13,6 @@ namespace nom.tam.fits
 
     using System;
     using System.IO;
-    using System.Security.Policy;
     using System.Net;
     using System.Collections;
     using nom.tam.util;

@@ -15,7 +15,6 @@ namespace nom.tam.fits
     using System.IO;
     using nom.tam.util;
     using System.IO.Compression;
-    using System.Security.Policy;
 
     /// <summary>This class provides access to routines to allow users
 	/// to read and write FITS files.
