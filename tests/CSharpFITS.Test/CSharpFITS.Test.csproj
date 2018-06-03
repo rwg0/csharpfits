@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CSharpFITS_v1.1\CSharpFITS_v1.1.csproj" />
+    <ProjectReference Include="..\..\CSharpFITS\CSharpFITS.csproj" />
   </ItemGroup>
 
   <ItemGroup>

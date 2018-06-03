@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpFITS_v1.1", "CSharpFITS_v1.1\CSharpFITS_v1.1.csproj", "{93C93A99-D18F-495E-8AC9-6B6F6F7F273E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpFITS", "CSharpFITS\CSharpFITS.csproj", "{93C93A99-D18F-495E-8AC9-6B6F6F7F273E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0C07CCD3-FF69-4555-A6AF-73603B6A2D1A}"
 EndProject

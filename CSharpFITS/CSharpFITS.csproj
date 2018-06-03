@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net40;net45</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Product>CSharpFITS</Product>
+    <Company>Virtual Observatory India</Company>
+    <Copyright>Thomas McGlynn 1997-2007, Virtual Observatory - India 2007.</Copyright>
+    <PackageLicenseUrl>https://github.com/elendil-software/csharpfits/blob/master/license.txt</PackageLicenseUrl>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
+    <PackageTags>Astronomy,FITS,Image</PackageTags>
+    <RepositoryUrl>https://github.com/elendil-software/csharpfits</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/elendil-software/csharpfits</PackageProjectUrl>
+    <Description></Description>
+    <Version>1.1.1</Version>
+    <Authors>Virtual Observatory - India</Authors>
+    <PackageId>CSharpFITS</PackageId>
+    <RootNamespace>nom.tam</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
