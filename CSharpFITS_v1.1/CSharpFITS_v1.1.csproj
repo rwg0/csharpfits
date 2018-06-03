@@ -17,6 +17,11 @@
     <Version>1.1.1</Version>
     <Authors>Virtual Observatory - India</Authors>
     <PackageId>CSharpFITS</PackageId>
+    <RootNamespace>nom.tam</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 
 </Project>
