@@ -1,4 +1,4 @@
-Fork of the CSharpFITS package from http://vo.iucaa.ernet.in/~voi/CSharpFITS.html
+Fork of the CSharpFITS package from http://voi.iucaa.in/voi/CSharpFITS.html
 
 This fork basically adds a big performance boost for the common use case of writing a large, probably multi-dimensional, array of int or short values.
 
