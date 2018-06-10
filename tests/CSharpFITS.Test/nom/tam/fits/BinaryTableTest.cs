@@ -151,7 +151,7 @@ namespace nom.tam.fits
         [Test]
         public void TestRowDelete()
         {
-            Fits f = new Fits("bt1.fits");
+            Fits f = new Fits("testdocs\\bt1.fits");
             f.Read();
 
             BinaryTableHDU thdu = (BinaryTableHDU)f.GetHDU(1);
@@ -216,7 +216,7 @@ namespace nom.tam.fits
         [Test]
         public void TestSet()
         {
-            Fits f = new Fits("bt2.fits", FileAccess.Read);
+            Fits f = new Fits("testdocs\\bt2.fits", FileAccess.Read);
             f.Read();
             BinaryTableHDU bhdu = (BinaryTableHDU)f.GetHDU(1);
             Header hdr = bhdu.Header;

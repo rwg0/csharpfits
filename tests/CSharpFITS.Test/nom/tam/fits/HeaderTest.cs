@@ -69,7 +69,7 @@ namespace nom.tam.fits
         [Test]
         public void TestCursor()
         {
-            Fits f = new Fits("ht1.fits");
+            Fits f = new Fits("testdocs\\ht1.fits");
             ImageHDU hdu = (ImageHDU)f.GetHDU(0);
             Header hdr = hdu.Header;
             Cursor c = hdr.GetCursor();
@@ -193,7 +193,7 @@ namespace nom.tam.fits
         [Test]
         public void TestBadHeader()
         {
-            Fits f = new Fits("ht1.fits");
+            Fits f = new Fits("testdocs\\ht1.fits");
             ImageHDU hdu = (ImageHDU)f.GetHDU(0);
             Header hdr = hdu.Header;
             Cursor c = hdr.GetCursor();
@@ -224,7 +224,7 @@ namespace nom.tam.fits
             // Should be rewriteable until we add enough cards to
             // start a new block.
 
-            Fits f = new Fits("ht1.fits");
+            Fits f = new Fits("testdocs\\ht1.fits");
             ImageHDU hdu = (ImageHDU)f.GetHDU(0);
             Header hdr = hdu.Header;
             Cursor c = hdr.GetCursor();
