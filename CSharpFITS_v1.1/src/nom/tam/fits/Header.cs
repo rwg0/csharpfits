@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace nom.tam.fits
 {
    /*
@@ -1389,14 +1391,14 @@ namespace nom.tam.fits
 				String v = fcard.Value;
 				if(v != null)
 				{
-					return Double.Parse(v);
+					return Double.Parse(v, CultureInfo.InvariantCulture);
 				}
 			}
 			catch(FormatException)
 			{
 			}
 
-      return dft;
+            return dft;
 		}
 
 		/// <summary>Get the <CODE>boolean</CODE> value associated with the given key.</summary>
