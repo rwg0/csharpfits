@@ -15,6 +15,15 @@ namespace CSharpFITS_v1._1.tests.sharpcap
     public class TestFitsWriter
     {
         [Test]
+        public void TestBrokenFits()
+        {
+            var strm = File.OpenRead(@"C:\Users\robin\Downloads\M2-FITS-SC\M_2_Light_001.fits");
+            var f = new Fits();
+            f.Read(strm);
+
+        }
+
+        [Test]
         public void TestWrite8bpp()
         {
             ABitLikeFitsFileWriter ablffw = new ABitLikeFitsFileWriter(8, ABitLikeFitsFileWriter.ColourSpaceId.Mono, 1, new Size(1024, 1024), 1 );

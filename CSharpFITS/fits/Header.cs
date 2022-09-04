@@ -1517,6 +1517,19 @@ namespace nom.tam.fits
           }
           need -= len;
         }
+
+        bool allZero = true;
+        foreach (var b in buffer)
+        {
+            if (b != 0)
+            {
+                allZero = false;
+                break;
+            }
+        }
+
+        if (allZero)
+            throw new EndOfStreamException("Zero data found in file (after FITS data?). Treating as end of file");
         //				}
         //				catch(EndOfStreamException e)
         //				{
