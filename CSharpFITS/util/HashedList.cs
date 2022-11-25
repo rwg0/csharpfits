@@ -429,7 +429,7 @@ namespace nom.tam.util
         {
             if (keyed.ContainsKey(key))
             {
-                System.Console.Out.WriteLine("Removing " + key + "-" + keyed[key]);
+                //System.Console.Out.WriteLine("Removing " + key + "-" + keyed[key]);
                 keyed.Remove(key);
                 ordered.Remove(key);
                 return true;
@@ -674,7 +674,7 @@ namespace nom.tam.util
         /// </summary>
         public bool RemoveUnkeyedObject(Object val)
         {
-            System.Console.Out.WriteLine("In RemoveUnkeyedObject method.");
+            //System.Console.Out.WriteLine("In RemoveUnkeyedObject method.");
             if (keyed.ContainsValue(val))
             {
                 for (int i = 0; i < ordered.Count; i += 1)

@@ -124,7 +124,7 @@ namespace nom.tam.fits
 			}
 			else
 			{
-                Console.WriteLine();
+                //Console.WriteLine();
 				throw new FitsException("Invalid data presented to HDUFactory");
 			}
 			
