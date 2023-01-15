@@ -779,7 +779,7 @@ namespace nom.tam.fits
 			}
 			catch (TableException e)
 			{
-				throw new FitsException("Unable to create table:" + e);
+				throw new FitsException("Unable to create table:",e);
 			}
 			
 			return table;
@@ -903,9 +903,9 @@ namespace nom.tam.fits
                 currInput.Seek(fileOffset + row * rowLen, SeekOrigin.Begin);
 				currInput.ReadArray(data);
 			}
-			catch(IOException)
+			catch(IOException e)
 			{
-				throw new FitsException("Error in deferred row read");
+				throw new FitsException($"Error in deferred row read: {e.Message}", e);
 			}
 			for (int col = 0; col < data.Length; col += 1)
 			{
@@ -953,7 +953,7 @@ namespace nom.tam.fits
 			}
 			catch(TableException e)
 			{
-				throw new FitsException("Error modifying table: " + e);
+				throw new FitsException($"Error modifying table: {e.Message}", e);
 			}
 		}
 		
@@ -998,7 +998,7 @@ namespace nom.tam.fits
 			}
 			catch (TableException e)
 			{
-				throw new FitsException("Unable to set column:" + col + " error:" + e);
+				throw new FitsException("Unable to set column:" + col + " error:",e);
 			}
 		}
 		
@@ -1166,9 +1166,9 @@ namespace nom.tam.fits
 				{
 					table.AddRow(flatRow);
 				}
-				catch(TableException)
+				catch(TableException e)
 				{
-					throw new FitsException("Error add row to table");
+					throw new FitsException($"Error add row to table : {e.Message}", e);
 				}
 				
 				nRow += 1;
@@ -1193,8 +1193,7 @@ namespace nom.tam.fits
 	        }
             catch (TableException e)
             {
-	            throw new FitsException ("Error deleting row block "+row+" to "+(row+len-1)+" from table."+
-                                            "\nException: "+e);
+	            throw new FitsException ($"Error deleting row block {row} to {(row + len - 1)} from table.\nException: {e.Message}", e);
 	        }
         }
     	
@@ -1381,7 +1380,7 @@ namespace nom.tam.fits
 			}
 			catch (TableException e)
 			{
-				throw new FitsException("Error in ColumnTable:" + e);
+				throw new FitsException("Error in ColumnTable:",e);
 			}
 
             // change suggested in .99.2 version
@@ -1447,7 +1446,7 @@ namespace nom.tam.fits
             }
 			catch (TableException e)
 			{
-				throw new FitsException("Error modifying table:" + e);
+				throw new FitsException("Error modifying table:",e);
 			}
 		}
 		
@@ -1476,7 +1475,7 @@ namespace nom.tam.fits
 				}
 				catch(IOException e)
 				{
-					throw new FitsException("Unable to skip binary table HDU:" + e);
+					throw new FitsException("Unable to skip binary table HDU:",e);
 				}
 			}
 			else
@@ -1514,7 +1513,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Error reading binary table data:" + e);
+				throw new FitsException("Error reading binary table data:",e);
 			}
 		}
 
@@ -1540,7 +1539,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Unable to write table:" + e);
+				throw new FitsException("Unable to write table:",e);
 			}
 		}
 
@@ -1921,7 +1920,7 @@ namespace nom.tam.fits
 	        }
             catch (Exception e)
             {
-	            throw new FitsException("Error deleting columns from BinaryTable:"+e);
+	            throw new FitsException($"Error deleting columns from BinaryTable: {e.Message}",e);
 	        }
         }
 

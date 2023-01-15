@@ -369,7 +369,7 @@ namespace nom.tam.fits
 				}
 				catch(IOException e)
 				{
-					throw new FitsException("Unable to skip over data:" + e);
+					throw new FitsException("Unable to skip over data:",e);
 				}
 			}
 			else
@@ -381,7 +381,7 @@ namespace nom.tam.fits
 				}
 				catch(IOException e)
 				{
-					throw new FitsException("Unable to read image data:" + e);
+					throw new FitsException("Unable to read image data:",e);
 				}
 				
 				tiler = new ImageDataTiler(this, null, 0, dataDescription);
@@ -398,7 +398,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Error reading image padding:" + e);
+				throw new FitsException("Error reading image padding:",e);
 			}
 		}
 		/// <summary>
@@ -423,9 +423,9 @@ namespace nom.tam.fits
 					{
 						dataArray = tiler.CompleteImage;
 					}
-					catch(IOException)
+					catch(IOException e)
 					{
-						throw new FitsException("Error attempting to fill image");
+						throw new FitsException("Error attempting to fill image" ,e);
 					}
 				}
 				else if (dataArray == null && dataDescription != null)
@@ -446,7 +446,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("IO Error on image write: " + e);
+				throw new FitsException("IO Error on image write: " + e.Message, e);
 			}
 			
 			byte[] padding = new byte[FitsUtil.Padding(TrueSize)];
@@ -457,7 +457,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Error writing padding: " + e);
+				throw new FitsException("Error writing padding: " + e.Message, e);
 			}
 		}
 	}

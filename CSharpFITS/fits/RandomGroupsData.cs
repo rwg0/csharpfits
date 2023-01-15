@@ -89,7 +89,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("IO error reading Random Groups data " + e);
+				throw new FitsException("IO error reading Random Groups data " + e.Message, e);
 			}
 			int pad = FitsUtil.Padding(TrueSize);
 			try
@@ -101,9 +101,9 @@ namespace nom.tam.fits
 				temp_Int64 = str.Seek(pad) - temp_Int64;  //temp_BinaryReader.BaseStream.Seek(pad, System.IO.SeekOrigin.Current) - temp_Int64;
 				int generatedAux = (int)temp_Int64;
 			}
-			catch(IOException)
+			catch(IOException e)
 			{
-				throw new FitsException("IO error reading padding.");
+				throw new FitsException("IO error reading padding.", e);
 			}
 		}
 		
@@ -119,7 +119,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("IO error writing random groups data " + e);
+				throw new FitsException("IO error writing random groups data " + e.Message, e);
 			}
 		}
 		

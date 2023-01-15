@@ -161,9 +161,9 @@ namespace nom.tam.fits
 						{
 							ParseTime(dStr.Substring(middle + 4));
 						}
-						catch (FitsException)
+						catch (FitsException e)
 						{
-							throw new FitsException("Bad time in FITS date string \"" + dStr + "\"");
+							throw new FitsException($"Bad time in FITS date string \"{dStr}\"", e);
 						}
 						
 						// we got the time; mark the end of the date string

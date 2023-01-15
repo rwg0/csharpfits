@@ -113,7 +113,7 @@ namespace nom.tam.fits
 				}
 				catch(IOException e)
 				{
-					throw new FitsException("Error reading heap:" + e);
+					throw new FitsException("Error reading heap:",e);
 				}
 			}
             
@@ -130,7 +130,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Error writing heap:" + e);
+				throw new FitsException("Error writing heap:",e);
 			}
 		}
 		
@@ -177,7 +177,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Error decoding heap area at offset=" + offset + ".  Exception: Exception " + e);
+				throw new FitsException($"Error decoding heap area at offset={offset}.  Exception: Exception {e.Message}", e);
 			}
 		}
 		
@@ -218,9 +218,9 @@ namespace nom.tam.fits
 				o.Flush();
 				o.Close();
 			}
-			catch(IOException)
+			catch(IOException e)
 			{
-				throw new FitsException("Unable to write variable column length data");
+				throw new FitsException("Unable to write variable column length data", e);
 			}
 			
 			Array.Copy(bo.ToArray(), 0, heap, heapSize, size);

@@ -27,8 +27,12 @@ namespace nom.tam.fits
         /// Constructor taking string argument
         /// </summary>
         /// <param name="msg"></param>
-		public TruncatedFileException(String msg):base(msg)
-		{
-		}
-	}
+		//public TruncatedFileException(String msg):base(msg)
+		//{
+		//}
+
+        public TruncatedFileException(String msg, Exception innerException) : base(msg, innerException)
+        {
+        }
+}
 }

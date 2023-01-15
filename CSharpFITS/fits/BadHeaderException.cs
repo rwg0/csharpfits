@@ -27,8 +27,12 @@ namespace nom.tam.fits
         /// Constructor with String argument for exception message
         /// </summary>
         /// <param name="msg"></param>
-		public BadHeaderException(String msg):base(msg)
-		{
-		}
-	}
+		//public BadHeaderException(String msg):base(msg)
+		//{
+		//}
+
+        public BadHeaderException(String msg, Exception innerException) : base(msg, innerException)
+        {
+        }
+}
 }

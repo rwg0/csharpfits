@@ -1596,7 +1596,7 @@ namespace nom.tam.fits
       }
       catch(IOException e)
       {
-        throw new TruncatedFileException(e.Message);
+        throw new TruncatedFileException(e.Message ,e);
       }
     }
 		
@@ -1641,7 +1641,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("IO Error writing header: " + e);
+				throw new FitsException($"IO Error writing header: {e.Message}", e);
 			}
 			try
 			{

@@ -130,7 +130,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Error in Rewrite Flush: " + e);
+				throw new FitsException($"Error in Rewrite Flush: {e.Message}", e);
 			}
 		}
 		

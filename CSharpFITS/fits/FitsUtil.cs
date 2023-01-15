@@ -41,7 +41,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Unable to repostion stream " + o + " of type " + o.GetType().FullName + " to " + offset + "   Exception:" + e);
+				throw new FitsException("Unable to repostion stream " + o + " of type " + o.GetType().FullName + " to " + offset + "   Exception:",e);
 			}
 		}
 		

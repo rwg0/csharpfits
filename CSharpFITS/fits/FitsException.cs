@@ -24,5 +24,10 @@ namespace nom.tam.fits
             : base(msg)
         {
         }
+
+        public FitsException(string msg, Exception innerException)
+            : base(msg, innerException)
+        {
+        }
     }
 }

@@ -20,9 +20,13 @@ namespace nom.tam.util
 		public TableException():base()
 		{
 		}
-		
-		public TableException(String msg):base(msg)
+
+		public TableException(String msg) : base(msg)
 		{
 		}
-	}
+
+		public TableException(String msg, Exception innerException) : base(msg, innerException)
+        {
+        }
+}
 }

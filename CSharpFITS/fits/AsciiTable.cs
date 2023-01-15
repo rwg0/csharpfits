@@ -43,7 +43,7 @@ namespace nom.tam.fits
 						}
 						catch(IOException e)
 						{
-							throw new FitsException("Error in deferred read -- file closed prematurely?:" + e);
+							throw new FitsException("Error in deferred read -- file closed prematurely?:" + e.Message, e);
 						}
 						//FitsUtil.Reposition(currInput, newOffset);
                         currInput.Seek(newOffset, SeekOrigin.Begin);
@@ -242,7 +242,7 @@ namespace nom.tam.fits
 				}
 				catch(IOException e)
 				{
-					throw new FitsException("Error skipping data: " + e);
+					throw new FitsException("Error skipping data: ", e);
 				}
 			}
 			else
@@ -253,7 +253,7 @@ namespace nom.tam.fits
 				}
 				catch (IOException e)
 				{
-					throw new FitsException("Error reading ASCII table:" + e);
+					throw new FitsException("Error reading ASCII table:", e);
 				}
 			}
 			
@@ -269,7 +269,7 @@ namespace nom.tam.fits
 			}
 			catch (IOException e)
 			{
-				throw new FitsException("Error skipping padding:" + e);
+				throw new FitsException("Error skipping padding:",e);
 			}
 		}
 		
@@ -343,7 +343,7 @@ namespace nom.tam.fits
 			}
 			catch(Exception e)
 			{
-				throw new FitsException("Error parsing data at row,col:" + row + "," + col + "  " + e);
+				throw new FitsException($"Error parsing data at row,col:{row},{col}  ", e);
 			}
 			return true;
 		}
@@ -425,9 +425,9 @@ namespace nom.tam.fits
 			{
 				GetBuffer(rowLen, fileOffset + row * rowLen);
 			}
-			catch(IOException)
+			catch(IOException e)
 			{
-				throw new FitsException("Unable to read row");
+				throw new FitsException("Unable to read row",e);
 			}
 			
 			for (int i = 0; i < nFields; i += 1)
@@ -452,10 +452,10 @@ namespace nom.tam.fits
 			{
 				GetBuffer(lengths[col], fileOffset + row * rowLen + offsets[col]);
 			}
-			catch(IOException)
+			catch(IOException e)
 			{
                 buffer = null;
-				throw new FitsException("Unable to read element");
+				throw new FitsException("Unable to read element",e);
 			}
 			res.SetValue(ArrayFuncs.NewInstance(types[col], 1), 0);
 			
@@ -563,9 +563,9 @@ namespace nom.tam.fits
 				}
 				str.Flush();
 			}
-			catch(IOException)
+			catch(IOException e)
 			{
-				throw new FitsException("Error writing ASCII Table data");
+				throw new FitsException("Error writing ASCII Table data", e);
 			}
 		}
 		
@@ -603,9 +603,9 @@ namespace nom.tam.fits
 				{
 					Array.Copy((Array)newData.GetValue(i), 0, (Array)data[i], row, 1);
 				}
-				catch(Exception)
+				catch(Exception e)
 				{
-					throw new FitsException("Unable to modify row: incompatible data:" + row);
+					throw new FitsException("Unable to modify row: incompatible data:" + row,e);
 				}
 
                 // .99.2 changes:
@@ -629,9 +629,9 @@ namespace nom.tam.fits
 			{
 				Array.Copy((Array)newData, 0, (Array)data[col], row, 1);
 			}
-			catch(Exception)
+			catch(Exception e)
 			{
-				throw new FitsException("Incompatible element:" + row + "," + col);
+				throw new FitsException("Incompatible element:" + row + "," + col, e);
 			}
 
             // .99.2 changes:
@@ -812,7 +812,7 @@ namespace nom.tam.fits
 					}
 					catch (Exception e)
 					{
-						throw new FitsException("Error adding row:" + e);
+						throw new FitsException("Error adding row:",e);
 					}
 				}
 				nRows += 1;
@@ -854,7 +854,7 @@ namespace nom.tam.fits
 	        }
             catch(Exception e)
             {
-	            throw new FitsException("Error deleting row:"+e);
+	            throw new FitsException("Error deleting row:", e);
 	        }
         }
 

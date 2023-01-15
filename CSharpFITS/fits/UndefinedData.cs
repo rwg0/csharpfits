@@ -142,7 +142,7 @@ namespace nom.tam.fits
 				}
 				catch (IOException e)
 				{
-					throw new FitsException("Unable to skip over data:" + e);
+					throw new FitsException("Unable to skip over data:",e);
 				}
 			}
 			else
@@ -153,7 +153,7 @@ namespace nom.tam.fits
 				}
 				catch (IOException e)
 				{
-					throw new FitsException("Unable to read unknown data:" + e);
+					throw new FitsException("Unable to read unknown data:",e);
 				}
 			}
 			
@@ -173,7 +173,7 @@ namespace nom.tam.fits
 			}
 			catch (IOException e)
 			{
-				throw new FitsException("Error reading unknown padding:" + e);
+				throw new FitsException("Error reading unknown padding:",e);
 			}
 		}
 		/// <summary>
@@ -198,7 +198,7 @@ namespace nom.tam.fits
 			}
 			catch (IOException e)
 			{
-				throw new FitsException("IO Error on unknown data write" + e);
+				throw new FitsException("IO Error on unknown data write" + e.Message, e);
 			}
 			
 			byte[] padding = new byte[FitsUtil.Padding(TrueSize)];
@@ -208,7 +208,7 @@ namespace nom.tam.fits
 			}
 			catch (IOException e)
 			{
-				throw new FitsException("Error writing padding: " + e);
+				throw new FitsException("Error writing padding: " + e.Message, e);
 			}
 		}
 	}

@@ -613,7 +613,7 @@ namespace nom.tam.fits
 			}
 			catch(IOException e)
 			{
-				throw new FitsException("Error flushing at end of HDU: " + e.Message);
+				throw new FitsException("Error flushing at end of HDU: " + e.Message, e);
 			}
 		}
 		

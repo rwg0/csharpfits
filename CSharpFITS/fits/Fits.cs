@@ -348,7 +348,7 @@ namespace nom.tam.fits
                 }
                 catch (System.IO.IOException e)
                 {
-                    throw new FitsException("Cannot inflate input stream" + e);
+                    throw new FitsException($"Cannot inflate input stream {e.Message}" , e);
                 }
             }
 			
@@ -371,7 +371,7 @@ namespace nom.tam.fits
 
             if(!f.Exists)
 			{
-				throw new FitsException("File '" + f + "' does not exist.");
+				throw new FitsException($"File '{f}' does not exist.");
 			}
 			try
 			{
@@ -382,9 +382,9 @@ namespace nom.tam.fits
                     dataStr = new BufferedFile(f, access, FileShare.ReadWrite);
 				((BufferedFile)dataStr).Seek(0);
 			}
-			catch(IOException)
+			catch(IOException e)
 			{
-				throw new FitsException("Unable to open file " + f.FullName);
+				throw new FitsException($"Unable to open file {f.FullName} due to {e.Message}", e);
 			}
 		}
 		
@@ -422,9 +422,9 @@ namespace nom.tam.fits
                     RandomInit(myFile,FileAccess.ReadWrite);
                 }
             }
-			catch(IOException)
+			catch(IOException e)
 			{
-				throw new FitsException("Unable to create Input Stream from File: " + myFile);
+				throw new FitsException($"Unable to create Input Stream from File: {myFile} due to {e.Message}", e);
 			}
 		}
 		
@@ -499,7 +499,7 @@ namespace nom.tam.fits
                     }
                     catch (IOException e)
                     {
-                        throw new FitsException("Unable to open stream from URL:" + filename + " Exception=" + e);
+                        throw new FitsException($"Unable to open stream from URL:{filename} Exception={e.Message}" ,e);
                     }
                     return;
                 }
@@ -536,9 +536,9 @@ namespace nom.tam.fits
                 Stream s = FitsUtil.GetURLStream(myURL.OriginalString, 0);
                 StreamInit(s, compressed, false);
             }
-            catch (IOException)
+            catch (IOException e)
             {
-                throw new FitsException("Unable to open input from URL:" + myURL);
+                throw new FitsException($"Unable to open input from URL:{myURL}", e);
             }
         }
 		
@@ -646,9 +646,9 @@ namespace nom.tam.fits
 			{
 				return (BasicHDU) hduList[n];
 			}
-			catch (System.Exception)
+			catch (System.Exception e)
 			{
-				throw new FitsException("Internal Error: hduList build failed");
+				throw new FitsException("Internal Error: hduList build failed", e);
 			}
 		}
 		
@@ -666,7 +666,7 @@ namespace nom.tam.fits
 				}
 				catch(IOException e)
 				{
-					throw new FitsException("IO error: " + e);
+					throw new FitsException($"IO error: {e.Message}", e);
 				}
 			}
 		}
@@ -745,7 +745,7 @@ namespace nom.tam.fits
 			}
 			catch(Exception e)
 			{
-				throw new FitsException("hduList inconsistency in insertHDU: " + e);
+				throw new FitsException("hduList inconsistency in insertHDU: " + e.Message, e);
 			}
 		}
 		
@@ -778,9 +778,9 @@ namespace nom.tam.fits
 					}
 				}
 			}
-			catch(Exception)
+			catch(Exception e)
 			{
-				throw new FitsException("Internal Error: hduList Vector Inconsitency");
+				throw new FitsException("Internal Error: hduList Vector Inconsitency", e);
 			}
 		}
 
@@ -812,7 +812,7 @@ namespace nom.tam.fits
 				catch(IndexOutOfRangeException e)
 				{
 					SupportClass.WriteStackTrace(e, Console.Error);
-					throw new FitsException("Internal Error: Vector Inconsistency" + e);
+					throw new FitsException("Internal Error: Vector Inconsistency" + e.Message, e);
 				}
 			}
 

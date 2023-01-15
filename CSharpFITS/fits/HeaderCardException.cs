@@ -30,9 +30,12 @@ namespace nom.tam.fits
 		/// Constructor taking String as paramter
 		/// </summary>
 		/// <param name="s"></param>
-
-		public HeaderCardException(String s):base(s)
+		public HeaderCardException(String s) : base(s)
 		{
 		}
-	}
+
+		public HeaderCardException(String s, Exception innerException) : base(s, innerException)
+        {
+        }
+}
 }
