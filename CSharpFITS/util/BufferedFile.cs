@@ -70,13 +70,8 @@ namespace nom.tam.util
 
         #region RandomAccess Members
         /// <summary>Get the current position in the stream</summary>
-        public long FilePointer
-        {
-            get
-            {
-                return _s.Position;
-            }
-        }
+        public long FilePointer => _s.Position;
+
         #endregion
     }
 }

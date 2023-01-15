@@ -25,58 +25,22 @@ namespace nom.tam.util
         #region properties
         public virtual Stream TargetStream
         {
-            get
-            {
-                return _s;
-            }
-            set
-            {
-                _s = value;
-            }
+            get => _s;
+            set => _s = value;
         }
 
-        public override bool CanRead
-        {
-            get
-            {
-                return _s.CanRead;
-            }
-        }
+        public override bool CanRead => _s.CanRead;
 
-        public override bool CanSeek
-        {
-            get
-            {
-                return _s.CanSeek;
-            }
-        }
+        public override bool CanSeek => _s.CanSeek;
 
-        public override bool CanWrite
-        {
-            get
-            {
-                return _s.CanWrite;
-            }
-        }
+        public override bool CanWrite => _s.CanWrite;
 
-        public override long Length
-        {
-            get
-            {
-                return _s.Length;
-            }
-        }
+        public override long Length => _s.Length;
 
         public override long Position
         {
-            get
-            {
-                return _s.Position;
-            }
-            set
-            {
-                _s.Position = value;
-            }
+            get => _s.Position;
+            set => _s.Position = value;
         }
         #endregion
 

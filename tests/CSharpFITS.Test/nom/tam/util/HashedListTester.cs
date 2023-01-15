@@ -362,7 +362,7 @@ namespace nom.tam.util
             h1.Add("key 4", "Row 4");
             h1.Add("Row 5");
 
-            Cursor j = (Cursor)h1.GetCursor(0);
+            Cursor j = h1.GetCursor(0);
             Assertion.AssertEquals("n1xv", "Row 1", (String)((DictionaryEntry)j.Current).Value);
             j.MoveNext();
             Assertion.AssertEquals("n1xv", "Row 3", (String)((DictionaryEntry)j.Current).Value);

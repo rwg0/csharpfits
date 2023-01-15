@@ -21,31 +21,15 @@ namespace nom.tam.fits
     {
         /// <summary>Get the number of columns for this table</summary>
         /// <returns> The number of columns in the table.</returns>
-        public virtual int NCols
-        {
-            get
-            {
-                return table.NCols;
-            }
+        public virtual int NCols => table.NCols;
 
-        }
         /// <summary>Get/set the number of rows for this table</summary>
         /// <returns> The number of rows in the table.</returns>
-        public virtual int NRows
-        {
-            get
-            {
-                return table.NRows;
-            }
+        public virtual int NRows => table.NRows;
 
-        }
         public virtual int CurrentColumn
         {
-            set
-            {
-                myHeader.PositionAfterIndex("TFORM", (value + 1));
-            }
-
+            set => myHeader.PositionAfterIndex("TFORM", (value + 1));
         }
 
         private readonly TableData table;

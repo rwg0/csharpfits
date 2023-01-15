@@ -27,21 +27,11 @@ namespace nom.tam.fits
 	public class BinaryTable : Data, TableData
     {
         /// <summary>Get the number of rows in the table</summary>
-        public int NRows
-        {
-            get
-            {
-                return nRow;
-            }
-        }
+        public int NRows => nRow;
+
         /// <summary>Get the number of columns in the table.</summary>
-        public int NCols
-        {
-            get
-            {
-                return nCol;
-            }
-        }
+        public int NCols => nCol;
+
         /// <summary>Get the size of the data in the HDU sans padding.</summary>
         internal override int TrueSize
         {
@@ -87,23 +77,12 @@ namespace nom.tam.fits
         /// <summary>
         /// Returns the dimensions 
         /// </summary>
-        public int[][] Dimens
-        {
-            get
-            {
-                return dimens;
-            }
-        }
+        public int[][] Dimens => dimens;
+
         /// <summary>
         /// Returns the Type[] of bases
         /// </summary>
-        public Type[] Bases
-        {
-            get
-            {
-                return table.Bases;
-            }
-        }
+        public Type[] Bases => table.Bases;
 
         /*
             public char[] Types
@@ -147,32 +126,14 @@ namespace nom.tam.fits
         /// <summary>
         /// Hets the size array
         /// </summary>
-		public int[] Sizes
-        {
-            get
-            {
-                return sizes;
-            }
-        }
+		public int[] Sizes => sizes;
 
         /// <summary> What is the size of the heap -- including 
         /// the offset from the end of the table data.</summary>
-        public int HeapSize
-        {
-            get
-            {
-                return (int)(heapOffset + heap.Size);
-            }
-        }
+        public int HeapSize => (int)(heapOffset + heap.Size);
 
         /// <summary> What is the offset to the heap.</summary>
-        public int HeapOffset
-        {
-            get
-            {
-                return heapOffset;
-            }
-        }
+        public int HeapOffset => heapOffset;
 
         /// <summary>This is the area in which variable length column data lives.</summary>
         internal FitsHeap heap;

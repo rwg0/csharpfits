@@ -75,37 +75,17 @@ namespace nom.tam.fits
         }
 
         /// <summary>Return the size of the data section</summary>
-        internal override int TrueSize
-        {
-            get
-            {
-                return nRows * rowLen;
-            }
-        }
+        internal override int TrueSize => nRows * rowLen;
+
         /// <summary>Get the number of rows in the table</summary>
-        public virtual int NRows
-        {
-            get
-            {
-                return nRows;
-            }
-        }
+        public virtual int NRows => nRows;
+
         /// <summary>Get the number of columns in the table</summary>
-        public virtual int NCols
-        {
-            get
-            {
-                return nFields;
-            }
-        }
+        public virtual int NCols => nFields;
+
         /// <summary>Get the number of bytes in a row</summary>
-        public virtual int RowLen
-        {
-            get
-            {
-                return rowLen;
-            }
-        }
+        public virtual int RowLen => rowLen;
+
         #endregion
 
         #region Instance Variables

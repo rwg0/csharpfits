@@ -141,7 +141,7 @@ namespace nom.tam.fits
             catch (Exception e)
             {
                 s.Close();
-                throw (e);
+                throw;
             }
         }
         /// <summary>
@@ -149,15 +149,9 @@ namespace nom.tam.fits
         /// </summary>
         public static String TempDirectory
         {
-            get
-            {
-                return _tempDir;
-            }
+            get => _tempDir;
 
-            set
-            {
-                _tempDir = value;
-            }
+            set => _tempDir = value;
         }
         /// <summary>
         /// Initializes the HDU array list
@@ -169,13 +163,7 @@ namespace nom.tam.fits
 
         /// <summary>Get the current number of HDUs in the Fits object.</summary>
 		/// <returns>The number of HDU's in the object.</returns>
-		public virtual int NumberOfHDUs
-        {
-            get
-            {
-                return hduList.Count;
-            }
-        }
+		public virtual int NumberOfHDUs => hduList.Count;
 
         /// <summary>Get the data stream used for the Fits Data.</summary>
 		/// <returns> The associated data stream.  Users may wish to
@@ -186,10 +174,7 @@ namespace nom.tam.fits
 		/// <param name="stream">The data stream to be used.</param>
 		public virtual ArrayDataIO Stream
         {
-            get
-            {
-                return dataStr;
-            }
+            get => dataStr;
 
             set
             {
@@ -732,7 +717,7 @@ namespace nom.tam.fits
                     {
                         InsertHDU(BasicHDU.DummyHDU, 0);
                         myHDU.PrimaryHDU = false;
-                        hduList.Insert(1, (Object)myHDU);
+                        hduList.Insert(1, myHDU);
                     }
                 }
                 else

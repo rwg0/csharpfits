@@ -22,59 +22,30 @@ namespace nom.tam.fits
     {
         #region Properties
         /// <summary>Does this card contain a string value?</summary>
-        public virtual bool IsStringValue
-        {
-            get
-            {
-                return isString;
-            }
-        }
+        public virtual bool IsStringValue => isString;
 
         /// <summary>Is this a key/value card?</summary>
-		public virtual bool KeyValuePair
-        {
-            get
-            {
-                return (key != null && val != null);
-            }
-        }
+		public virtual bool KeyValuePair => (key != null && val != null);
 
         /// <summary>Return the keyword from this card</summary>
 	    public virtual String Key
         {
-            get
-            {
-                return key;
-            }
+            get => key;
             // should be internal
-            set
-            {
-                key = value;
-            }
+            set => key = value;
         }
 
         /// <summary>Return the value from this card</summary>
 		public virtual String Value
         {
-            get
-            {
-                return val;
-            }
+            get => val;
             // suggested in .99.1 version
-            set
-            {
-                val = value;
-            }
+            set => val = value;
         }
 
         /// <summary>Return the comment from this card</summary>
-		public virtual String Comment
-        {
-            get
-            {
-                return comment;
-            }
-        }
+		public virtual String Comment => comment;
+
         #endregion
 
         #region Variables
@@ -391,7 +362,7 @@ namespace nom.tam.fits
             {
 
                 // look for a / to terminate the field.
-                int slashLoc = valueAndComment.IndexOf((Char)'/');
+                int slashLoc = valueAndComment.IndexOf('/');
                 if (slashLoc != -1)
                 {
                     comment = valueAndComment.Substring(slashLoc + 1).Trim();

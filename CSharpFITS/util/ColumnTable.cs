@@ -36,32 +36,15 @@ namespace nom.tam.util
     {
         #region Properties
         /// <summary>Get the number of rows in the table.</summary>
-        public virtual int NRows
-        {
-            get
-            {
-                return nrow;
-            }
-        }
+        public virtual int NRows => nrow;
 
         /// <summary>Get the number of columns in the table.</summary>
-        public virtual int NCols
-        {
-            get
-            {
-                return arrays.Length;
-            }
-        }
+        public virtual int NCols => arrays.Length;
 
         /// <summary>Get the base classes of the columns.</summary>
         /// <returns>An array of Class objects, one for each column.</returns>
-        public virtual Type[] Bases
-        {
-            get
-            {
-                return bases;
-            }
-        }
+        public virtual Type[] Bases => bases;
+
         /*
             /// <summary>Get the characters describing the base classes of the columns.
                 /// </summary>
@@ -77,21 +60,10 @@ namespace nom.tam.util
                 }
             */
         /// <summary>Get the actual data arrays</summary>
-        public virtual Object[] Columns
-        {
-            get
-            {
-                return arrays;
-            }
-        }
+        public virtual Object[] Columns => arrays;
 
-        public virtual int[] Sizes
-        {
-            get
-            {
-                return sizes;
-            }
-        }
+        public virtual int[] Sizes => sizes;
+
         #endregion
 
         #region Instance Variables

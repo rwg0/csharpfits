@@ -55,11 +55,11 @@ namespace nom.tam.util
             // Add up all the primitive arrays and ignore the objects.
             Assertion.AssertEquals("computeSize(Object[])", 2880 + 14 + 1600 + 0, ArrayFuncs.ComputeSize(agg));
 
-            for (int i = 0; i < ((Array)test1).GetLength(0); i += 1)
+            for (int i = 0; i < test1.GetLength(0); i += 1)
             {
-                for (int j = 0; j < ((Array)test1).GetLength(1); j += 1)
+                for (int j = 0; j < test1.GetLength(1); j += 1)
                 {
-                    for (int k = 0; k < ((Array)test1).GetLength(2); k += 1)
+                    for (int k = 0; k < test1.GetLength(2); k += 1)
                     {
                         test1[i, j, k] = i + j + k;
                     }

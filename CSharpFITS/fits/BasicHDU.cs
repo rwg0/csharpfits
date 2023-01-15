@@ -24,38 +24,16 @@ namespace nom.tam.fits
         /// <summary>Indicate whether HDU can be primary HDU.
         /// This method must be overriden in HDU types which can
         /// appear at the beginning of a FITS file.</summary>
-        internal virtual bool CanBePrimary
-        {
-            get
-            {
-                return false;
-            }
-        }
+        internal virtual bool CanBePrimary => false;
 
         /// <summary>Get the associated header</summary>
-		public virtual Header Header
-        {
-            get
-            {
-                return myHeader;
-            }
-        }
+		public virtual Header Header => myHeader;
+
         /// <summary>Get the starting offset of the HDU</summary>
-        public virtual long FileOffset
-        {
-            get
-            {
-                return myHeader.FileOffset;
-            }
-        }
+        public virtual long FileOffset => myHeader.FileOffset;
+
         /// <summary>Get the associated Data object</summary>
-        public virtual Data Data
-        {
-            get
-            {
-                return myData;
-            }
-        }
+        public virtual Data Data => myData;
 
         /// <summary>Get the non-FITS data object</summary>
 		public virtual Object Kernel
@@ -151,57 +129,32 @@ namespace nom.tam.fits
         /// <summary>
         /// Returns the value oF PCOUNT from HDU
         /// </summary>
-        public virtual int ParameterCount
-        {
-            get
-            {
-                return myHeader.GetIntValue("PCOUNT", 0);
-            }
-        }
+        public virtual int ParameterCount => myHeader.GetIntValue("PCOUNT", 0);
+
         /// <summary>
         /// Returns the value oF GCOUNT from HDU
         /// </summary>
-		public virtual int GroupCount
-        {
-            get
-            {
-                return myHeader.GetIntValue("GCOUNT", 1);
-            }
-        }
+		public virtual int GroupCount => myHeader.GetIntValue("GCOUNT", 1);
+
         /// <summary>
         /// Returns the value oF BSCALE from HDU
         ///The value field shall contain a floating point number.The default value for this keyword os 1.0
         /// </summary>
-        public virtual double BScale
-        {
-            get
-            {
-                return myHeader.GetDoubleValue("BSCALE", 1.0);
-            }
-        }
+        public virtual double BScale => myHeader.GetDoubleValue("BSCALE", 1.0);
+
         /// <summary>
         /// Returns the value oF BZero from HDU
         /// This keyword shall be used, along with the BSCALE keyword
         /// The default value for this keyword is 0.0.
         /// </summary>
-        public virtual double BZero
-        {
-            get
-            {
-                return myHeader.GetDoubleValue("BZERO", 0.0);
-            }
-        }
+        public virtual double BZero => myHeader.GetDoubleValue("BZERO", 0.0);
+
         /// <summary>
         /// The value shall contain a character String, describing the physical
         /// units in which the quantities in the array, after application of BSCALE and BZERO,are expressed.
         /// </summary>
-        public virtual String BUnit
-        {
-            get
-            {
-                return GetTrimmedString("BUNIT");
-            }
-        }
+        public virtual String BUnit => GetTrimmedString("BUNIT");
+
         /// <summary>
         /// Returns value for BLANK keyword if exists
         /// </summary>
@@ -262,119 +215,53 @@ namespace nom.tam.fits
 
         /// <summary> Get the name of the organization which created this FITS file.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
-		public virtual String Origin
-        {
-            get
-            {
-                return GetTrimmedString("ORIGIN");
-            }
-        }
+		public virtual String Origin => GetTrimmedString("ORIGIN");
 
         /// <summary> Get the name of the telescope which was used to acquire the data in this FITS file.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
-		public virtual String Telescope
-        {
-            get
-            {
-                return GetTrimmedString("TELESCOP");
-            }
-        }
+		public virtual String Telescope => GetTrimmedString("TELESCOP");
 
         /// <summary> Get the name of the instrument which was used to acquire the data in this FITS file.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
-		public virtual String Instrument
-        {
-            get
-            {
-                return GetTrimmedString("INSTRUME");
-            }
-        }
+		public virtual String Instrument => GetTrimmedString("INSTRUME");
 
         /// <summary>Get the name of the person who acquired the data in this FITS file.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
-		public virtual String Observer
-        {
-            get
-            {
-                return GetTrimmedString("OBSERVER");
-            }
-        }
+		public virtual String Observer => GetTrimmedString("OBSERVER");
 
         /// <summary> Get the name of the observed object in this FITS file.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
-		public virtual String Object
-        {
-            get
-            {
-                return GetTrimmedString("OBJECT");
-            }
-        }
+		public virtual String Object => GetTrimmedString("OBJECT");
 
         /// <summary> Get the equinox in years for the celestial coordinate system in which
 		/// positions given in either the header or data are expressed.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
-		public virtual double Equinox
-        {
-            get
-            {
-                return myHeader.GetDoubleValue("EQUINOX", -1.0);
-            }
-        }
+		public virtual double Equinox => myHeader.GetDoubleValue("EQUINOX", -1.0);
 
         /// <summary> Get the equinox in years for the celestial coordinate system in which
 		/// positions given in either the header or data are expressed.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
 		/// <deprecated>	Replaced by getEquinox</deprecated>
 		/// <seealso cref="">#getEquinox()</seealso>
-		public virtual double Epoch
-        {
-            get
-            {
-                return myHeader.GetDoubleValue("EPOCH", -1.0);
-            }
-        }
+		public virtual double Epoch => myHeader.GetDoubleValue("EPOCH", -1.0);
 
         /// <summary> Return the name of the person who compiled the information in
 		/// the data associated with this header.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
-		public virtual String Author
-        {
-            get
-            {
-                return GetTrimmedString("AUTHOR");
-            }
-        }
+		public virtual String Author => GetTrimmedString("AUTHOR");
 
         /// <summary> Return the citation of a reference where the data associated with
 		/// this header are published.</summary>
 		/// <returns>	either <CODE>null</CODE> or a String object</returns>
-		public virtual String Reference
-        {
-            get
-            {
-                return GetTrimmedString("REFERENC");
-            }
-        }
+		public virtual String Reference => GetTrimmedString("REFERENC");
 
         /// <summary> Return the minimum valid value in the array.</summary>
 		/// <returns>	minimum value.</returns>
-		public virtual double MaximumValue
-        {
-            get
-            {
-                return myHeader.GetDoubleValue("DATAMAX");
-            }
-        }
+		public virtual double MaximumValue => myHeader.GetDoubleValue("DATAMAX");
 
         /// <summary> Return the minimum valid value in the array.</summary>
 		/// <returns>	minimum value.</returns>
-		public virtual double MinimumValue
-        {
-            get
-            {
-                return myHeader.GetDoubleValue("DATAMIN");
-            }
-        }
+		public virtual double MinimumValue => myHeader.GetDoubleValue("DATAMIN");
 
         /// <summary>Indicate that an HDU is the first element of a FITS file.</summary>
 		internal virtual bool PrimaryHDU
@@ -457,13 +344,8 @@ namespace nom.tam.fits
         }
 
         /// <summary>Is the HDU rewriteable</summary>
-        public virtual bool Rewriteable
-        {
-            get
-            {
-                return myHeader.Rewriteable && myData.Rewriteable;
-            }
-        }
+        public virtual bool Rewriteable => myHeader.Rewriteable && myData.Rewriteable;
+
         #endregion
 
         #region Class Variables

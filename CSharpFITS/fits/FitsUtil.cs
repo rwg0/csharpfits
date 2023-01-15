@@ -72,7 +72,7 @@ namespace nom.tam.fits
         /// <summary>How many bytes are needed to fill the last 2880 block?</summary>
         public static int Padding(long size)
         {
-            int mod = (int)(size % (long)2880);
+            int mod = (int)(size % 2880);
             if (mod > 0)
             {
                 mod = 2880 - mod;

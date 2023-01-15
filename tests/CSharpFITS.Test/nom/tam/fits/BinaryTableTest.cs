@@ -358,10 +358,10 @@ namespace nom.tam.fits
             Array[] xf = (Array[])btab.GetColumn(0);
             Array[] xft = (Array[])xf.GetValue(50);
             float[] xftt = (float[])xft.GetValue(0);
-            Assertion.AssertEquals("row2", (float)0, (float)xftt[0]);
+            Assertion.AssertEquals("row2", 0, xftt[0]);
             xft = (Array[])xf.GetValue(99);
             xftt = (float[])xft.GetValue(0);
-            Assertion.AssertEquals("row3", (float)(49 * Math.Sin(49)), (float)xftt[0]);
+            Assertion.AssertEquals("row3", (float)(49 * Math.Sin(49)), xftt[0]);
 
             for (int i = 0; i < xf.Length; i += 3)
             {
@@ -379,10 +379,10 @@ namespace nom.tam.fits
             xf = (Array[])btab.GetColumn(0);
             xft = (Array[])xf.GetValue(50);
             xftt = (float[])xft.GetValue(0);
-            Assertion.AssertEquals("row7", 0F, (float)xftt[0]);
+            Assertion.AssertEquals("row7", 0F, xftt[0]);
             xft = (Array[])xf.GetValue(99);
             xftt = (float[])xft.GetValue(0);
-            Assertion.AssertEquals("row8", (float)(49 * Math.Sin(49)), (float)xftt[0]);
+            Assertion.AssertEquals("row8", (float)(49 * Math.Sin(49)), xftt[0]);
 
             for (int i = 0; i < xf.Length; i += 3)
             {

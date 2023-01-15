@@ -18,13 +18,7 @@ namespace nom.tam.util
     /// </summary>
     public class HeapStream : ActualBufferedStream
     {
-        public override long Position
-        {
-            get
-            {
-                return _pos;
-            }
-        }
+        public override long Position => _pos;
 
         public HeapStream(Stream s) : base(s)
         {

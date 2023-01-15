@@ -25,13 +25,7 @@ namespace nom.tam.image
         /// <summary>See if we can get the image data from memory.
         /// This may be overriden by other classes, notably
         /// in nom.tam.fits.ImageData.</summary>
-        public virtual Array MemoryImage
-        {
-            get
-            {
-                return null;
-            }
-        }
+        public virtual Array MemoryImage => null;
 
         /// <summary>Read the entire image into a multidimensional array.</summary>
         public virtual Object CompleteImage
@@ -247,7 +241,7 @@ namespace nom.tam.image
                 {
                     //Object[] xo = (Object[]) data;
                     //FillMemData((Array)xo[posits[dim]], posits, length, output, outputOffset, dim + 1);
-                    FillMemData((Array)((Array)data).GetValue(posits[dim]), posits, length, output, outputOffset, dim + 1);
+                    FillMemData((Array)data.GetValue(posits[dim]), posits, length, output, outputOffset, dim + 1);
                 }
                 else
                 {

@@ -45,13 +45,8 @@ namespace nom.tam.fits
 
         }
 
-        public override Object DataArray
-        {
-            get
-            {
-                return dataArray;
-            }
-        }
+        public override Object DataArray => dataArray;
+
         #endregion
 
         //private Object[][] dataArray;

@@ -17,14 +17,8 @@ namespace nom.tam.fits
     public class FitsDate
     {
         /// <summary>Return the current date in FITS date format</summary>
-		public static String FitsDateString
-        {
-            get
-            {
-                return GetFitsDateString(DateTime.Now, true);
-            }
+		public static String FitsDateString => GetFitsDateString(DateTime.Now, true);
 
-        }
         private int year = -1;
         private int month = -1;
         private int mday = -1;
@@ -90,7 +84,7 @@ namespace nom.tam.fits
 
         private void BuildOldDate(String dStr, int first, int len)
         {
-            int middle = dStr.IndexOf((Char)'/', first + 1);
+            int middle = dStr.IndexOf('/', first + 1);
             //int middle = SupportClass.StringIndexOf(dStr, '/', first + 1);
             if (middle > first + 2 && middle < len)
             {
@@ -117,7 +111,7 @@ namespace nom.tam.fits
 
             int len = tStr.Length;
 
-            int middle = tStr.IndexOf((Char)':', first + 1);
+            int middle = tStr.IndexOf(':', first + 1);
             //int middle = SupportClass.StringIndexOf(tStr, ':', first + 1);
             if (middle > first + 2 && middle < len)
             {
@@ -145,7 +139,7 @@ namespace nom.tam.fits
         private void BuildNewDate(String dStr, int first, int len)
         {
             // find the middle separator
-            int middle = dStr.IndexOf((Char)'-', first + 1);
+            int middle = dStr.IndexOf('-', first + 1);
             //int middle = SupportClass.StringIndexOf(dStr, '-', first + 1);
             if (middle > first + 2 && middle < len)
             {

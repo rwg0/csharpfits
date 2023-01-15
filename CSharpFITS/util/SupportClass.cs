@@ -99,13 +99,7 @@ namespace nom.tam.util
                 this.source = source;
             }
 
-            public int Count
-            {
-                get
-                {
-                    return (elements.Count);
-                }
-            }
+            public int Count => (elements.Count);
 
             public bool HasMoreTokens()
             {
@@ -250,12 +244,12 @@ namespace nom.tam.util
 
             public Object Clone()
             {
-                return (Object)this;
+                return this;
             }
 
             public override bool Equals(Object textNumberObject)
             {
-                return System.Object.Equals((Object)this, textNumberObject);
+                return System.Object.Equals(this, textNumberObject);
             }
 
             public string FormatDouble(double number)
@@ -287,10 +281,10 @@ namespace nom.tam.util
                 return System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes.AllCultures);
             }
 
-            public override int GetHashCode()
-            {
-                return GetHashCode();
-            }
+            //public override int GetHashCode()
+            //{
+            //    return base.GetHashCode();
+            //}
 
             private string GetCurrentFormatString()
             {
@@ -343,62 +337,32 @@ namespace nom.tam.util
 
             public bool GroupingUsed
             {
-                get
-                {
-                    return (groupingActivated);
-                }
-                set
-                {
-                    groupingActivated = value;
-                }
+                get => (groupingActivated);
+                set => groupingActivated = value;
             }
 
             public int MinIntDigits
             {
-                get
-                {
-                    return minIntDigits;
-                }
-                set
-                {
-                    minIntDigits = value;
-                }
+                get => minIntDigits;
+                set => minIntDigits = value;
             }
 
             public int MaxIntDigits
             {
-                get
-                {
-                    return maxIntDigits;
-                }
-                set
-                {
-                    maxIntDigits = value;
-                }
+                get => maxIntDigits;
+                set => maxIntDigits = value;
             }
 
             public int MinFractionDigits
             {
-                get
-                {
-                    return minFractionDigits;
-                }
-                set
-                {
-                    minFractionDigits = value;
-                }
+                get => minFractionDigits;
+                set => minFractionDigits = value;
             }
 
             public int MaxFractionDigits
             {
-                get
-                {
-                    return maxFractionDigits;
-                }
-                set
-                {
-                    maxFractionDigits = value;
-                }
+                get => maxFractionDigits;
+                set => maxFractionDigits = value;
             }
         }
         /*******************************/

@@ -30,25 +30,14 @@ namespace nom.tam.fits
         #region Properties
         /// <summary>Check that this HDU has a valid header.</summary>
         /// <returns> <CODE>true</CODE> if this HDU has a valid header.</returns>
-        public virtual bool HasHeader
-        {
-            get
-            {
-                return IsHeader(myHeader);
-            }
-        }
+        public virtual bool HasHeader => IsHeader(myHeader);
 
         // change suggested in .99.2 version
         /// <summary>
         /// Returns the standars column keywords
         /// </summary>
-        public override string[] ColumnKeyStems
-        {
-            get
-            {
-                return keyStems;
-            }
-        }
+        public override string[] ColumnKeyStems => keyStems;
+
         #endregion
 
 

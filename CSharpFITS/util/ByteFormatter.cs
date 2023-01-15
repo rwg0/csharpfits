@@ -63,35 +63,23 @@ namespace nom.tam.util
         /// may be inserted.</summary>
         public bool TruncateOnOverflow
         {
-            set
-            {
-                truncateOnOverflow = value;
-            }
+            set => truncateOnOverflow = value;
         }
         /// <summary>Should truncations cause a truncation overflow?</summary>
         public bool TruncationThrow
         {
-            set
-            {
-                truncationThrow = value;
-            }
+            set => truncationThrow = value;
         }
         /// <summary>Set the truncation fill character.The character to be used in subsequent truncations.</summary>
 
         public char TruncationFill
         {
-            set
-            {
-                truncationFill = (byte)value;
-            }
+            set => truncationFill = (byte)value;
         }
         /// <summary>Set the alignment flag.</summary>
         public bool Align
         {
-            set
-            {
-                align = value;
-            }
+            set => align = value;
         }
         #endregion
 
@@ -523,7 +511,7 @@ namespace nom.tam.util
             #endregion
             //  #region oldcrap
 
-            float pos = (float)Math.Abs(val);
+            float pos = Math.Abs(val);
 
             //int minlen, actlen;
 
@@ -1104,7 +1092,7 @@ namespace nom.tam.util
                 // int min = (int)Math.Floor((double)(Math.Log(Double.MinValue) * ilog10));
                 //UPGRADE_WARNING: Narrowing conversions may produce unexpected results in C#. 'ms-help://MS.VSCC.2003/commoner/redir/redirect.htm?keyword="jlca1042"'
                 //UPGRADE_TODO: The equivalent in .NET for field MAX_VALUE may return a different value. 'ms-help://MS.VSCC.2003/commoner/redir/redirect.htm?keyword="jlca1043"'
-                int max = (int)Math.Floor((double)(Math.Log(Double.MaxValue) * ilog10));
+                int max = (int)Math.Floor(Math.Log(Double.MaxValue) * ilog10);
                 int min = -323;
                 max += 1;
 

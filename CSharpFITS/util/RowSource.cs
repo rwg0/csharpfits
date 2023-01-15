@@ -47,37 +47,14 @@ namespace nom.tam.util
     public abstract class RowAdapter : RowSource
     {
         #region RowSource Members
-        public override int NRows
-        {
-            get
-            {
-                return _nrows;
-            }
-        }
+        public override int NRows => _nrows;
 
-        public override String[] ColumnNames
-        {
-            get
-            {
-                return _columnNames;
-            }
-        }
+        public override String[] ColumnNames => _columnNames;
 
-        public override Array[] ModelRow
-        {
-            get
-            {
-                return _modelRow;
-            }
-        }
+        public override Array[] ModelRow => _modelRow;
 
-        public override Object[] TNULL
-        {
-            get
-            {
-                return _tnull;
-            }
-        }
+        public override Object[] TNULL => _tnull;
+
         #endregion
 
         protected RowAdapter(int nrows, String[] columnNames, Array[] modelRow, Object[] tnull)
@@ -118,7 +95,7 @@ namespace nom.tam.util
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    throw;
                 }
                 if (reader.GetFieldType(i) == typeof(String))
                 {
@@ -232,7 +209,7 @@ namespace nom.tam.util
 
         protected Object CheckValue(Object o)
         {
-            if (o == null || o.GetType() == typeof(DBNull))
+            if (o == null || o is DBNull)
             {
                 return TNull;
             }
@@ -258,13 +235,7 @@ namespace nom.tam.util
             }
 
             protected byte[] _b = new byte[0];
-            protected override Object TNull
-            {
-                get
-                {
-                    return null;
-                }
-            }
+            protected override Object TNull => null;
         }
 
         public class ByteRowStuffer : RowStuffer
@@ -282,13 +253,7 @@ namespace nom.tam.util
             }
 
             protected byte[] _b = new byte[1];
-            protected override Object TNull
-            {
-                get
-                {
-                    return (byte)0;
-                }
-            }
+            protected override Object TNull => (byte)0;
         }
 
         public class TrooleanRowStuffer : RowStuffer
@@ -307,13 +272,7 @@ namespace nom.tam.util
 
             protected Troolean[] _b = new Troolean[1];
             protected Troolean _null = new Troolean(false, true);
-            protected override Object TNull
-            {
-                get
-                {
-                    return _null;
-                }
-            }
+            protected override Object TNull => _null;
         }
 
         public class CharRowStuffer : RowStuffer
@@ -331,13 +290,7 @@ namespace nom.tam.util
             }
 
             protected char[] _c = new char[1];
-            protected override Object TNull
-            {
-                get
-                {
-                    return '\0';
-                }
-            }
+            protected override Object TNull => '\0';
         }
 
         public class ShortRowStuffer : RowStuffer
@@ -355,13 +308,7 @@ namespace nom.tam.util
             }
 
             protected short[] _s = new short[1];
-            protected override Object TNull
-            {
-                get
-                {
-                    return (short)-99;
-                }
-            }
+            protected override Object TNull => (short)-99;
         }
 
         public class IntRowStuffer : RowStuffer
@@ -379,13 +326,7 @@ namespace nom.tam.util
             }
 
             protected int[] _i = new int[1];
-            protected override Object TNull
-            {
-                get
-                {
-                    return -99;
-                }
-            }
+            protected override Object TNull => -99;
         }
 
         public class FloatRowStuffer : RowStuffer
@@ -403,13 +344,7 @@ namespace nom.tam.util
             }
 
             protected float[] _f = new float[1];
-            protected override Object TNull
-            {
-                get
-                {
-                    return float.NaN;
-                }
-            }
+            protected override Object TNull => float.NaN;
         }
 
         public class LongRowStuffer : RowStuffer
@@ -427,13 +362,7 @@ namespace nom.tam.util
             }
 
             protected long[] _l = new long[1];
-            protected override Object TNull
-            {
-                get
-                {
-                    return (long)-99;
-                }
-            }
+            protected override Object TNull => (long)-99;
         }
 
         public class DoubleRowStuffer : RowStuffer
@@ -451,13 +380,7 @@ namespace nom.tam.util
             }
 
             protected double[] _d = new double[1];
-            protected override Object TNull
-            {
-                get
-                {
-                    return double.NaN;
-                }
-            }
+            protected override Object TNull => double.NaN;
         }
 
         public class DecimalRowStuffer : RowStuffer
@@ -475,13 +398,7 @@ namespace nom.tam.util
             }
 
             protected long[] _l = new long[1];
-            protected override Object TNull
-            {
-                get
-                {
-                    return (long)-99;
-                }
-            }
+            protected override Object TNull => (long)-99;
         }
 
         public class StringRowStuffer : RowStuffer
@@ -528,13 +445,7 @@ namespace nom.tam.util
             protected char _padChar;
             protected int _arrayLength;
             protected Object _tnull;
-            protected override Object TNull
-            {
-                get
-                {
-                    return _tnull;
-                }
-            }
+            protected override Object TNull => _tnull;
         }
 
         public static Object GetDefaultNullValue(Type t)

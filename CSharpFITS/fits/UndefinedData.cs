@@ -22,14 +22,8 @@ namespace nom.tam.fits
     {
         #region Properties
         /// <summary>Get the size in bytes of the data</summary>
-        internal override int TrueSize
-        {
-            get
-            {
-                return (int)byteSize;
-            }
+        internal override int TrueSize => (int)byteSize;
 
-        }
         /// <summary>Return the actual data.
         /// Note that this may return a null when
         /// the data is not readable.  It might be better

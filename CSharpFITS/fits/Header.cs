@@ -42,41 +42,17 @@ namespace nom.tam.fits
         }
 
         /// <summary>Find the number of cards in the header</summary>
-        public virtual int NumberOfCards
-        {
-            get
-            {
-                return cards.Count;
-            }
-        }
+        public virtual int NumberOfCards => cards.Count;
 
         /// <summary>Get the offset of this header</summary>
-        public virtual long FileOffset
-        {
-            get
-            {
-                return fileOffset;
-            }
-        }
+        public virtual long FileOffset => fileOffset;
 
         /// <summary>Return the size of the data including any needed padding.</summary>
         /// <returns> the data segment size including any needed padding.</returns>
-        public virtual long DataSize
-        {
-            get
-            {
-                return FitsUtil.AddPadding(TrueDataSize());
-            }
-        }
+        public virtual long DataSize => FitsUtil.AddPadding(TrueDataSize());
 
         /// <summary>Get the size of the header in bytes</summary>
-        public virtual long Size
-        {
-            get
-            {
-                return HeaderSize();
-            }
-        }
+        public virtual long Size => HeaderSize();
 
         /// <summary>Is this a valid header.</summary>
         /// <returns> <CODE>true</CODE> for a valid header, <CODE>false</CODE> otherwise.</returns>
@@ -1304,7 +1280,7 @@ namespace nom.tam.fits
         /// <param name="dft">The value to be returned if the key is not found.</param>
         public virtual int GetIntValue(String key, int dft)
         {
-            return (int)GetLongValue(key, (long)dft);
+            return (int)GetLongValue(key, dft);
         }
 
         /// <summary>Get the <CODE>int</CODE> value associated with the given key.</summary>
@@ -1655,7 +1631,7 @@ namespace nom.tam.fits
         /// <summary>Rewrite the header.</summary>
         public virtual void Rewrite()
         {
-            ArrayDataIO dos = (ArrayDataIO)input;
+            ArrayDataIO dos = input;
 
             if (Rewriteable)
             {

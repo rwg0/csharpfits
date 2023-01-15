@@ -95,8 +95,8 @@ namespace nom.tam.util
 
             // Ensure special values are tested.
 
-            by[0] = (byte)Byte.MinValue;
-            by[1] = (byte)Byte.MaxValue;
+            by[0] = Byte.MinValue;
+            by[1] = Byte.MaxValue;
             by[2] = 0;
             ch[0] = Char.MinValue;
             ch[1] = Char.MaxValue;
@@ -163,7 +163,7 @@ namespace nom.tam.util
                 multi[i][i][i][i] = i;
             }
 
-            if (args.Length < 4 || args[3].IndexOf((Char)'O') >= 0)
+            if (args.Length < 4 || args[3].IndexOf('O') >= 0)
             {
                 standardFileTest(filename, numIts, in_Renamed, in2);
                 standardStreamTest(filename, numIts, in_Renamed, in2);
@@ -174,13 +174,13 @@ namespace nom.tam.util
                     buffStreamSimpleTest(filename, numIts, in_Renamed, in2);
                 }
             */
-            if (args.Length < 4 || args[3].IndexOf((Char)'R') >= 0)
+            if (args.Length < 4 || args[3].IndexOf('R') >= 0)
             {
                 bufferedFileTest(filename, numIts, db, db2, fl, fl2, ln, ln2, in_Renamed, in2, sh, sh2, ch, ch2, by, by2, bl, bl2, multi, multi2);
             }
 
 
-            if (args.Length < 4 || args[3].IndexOf((Char)'S') >= 0)
+            if (args.Length < 4 || args[3].IndexOf('S') >= 0)
             {
                 bufferedStreamTest(filename, numIts, db, db2, fl, fl2, ln, ln2, in_Renamed, in2, sh, sh2, ch, ch2, by, by2, bl, bl2, multi, multi2);
             }
@@ -199,7 +199,7 @@ namespace nom.tam.util
                 for (int i = 0; i < dim; i += 1)
                 {
                     var temp_BinaryWriter = new BinaryWriter(f);
-                    temp_BinaryWriter.Write((Int32)in_Renamed[i]);
+                    temp_BinaryWriter.Write(in_Renamed[i]);
                     //f.Write((System.Int32) in_Renamed[i]);
                 }
             }
@@ -227,7 +227,7 @@ namespace nom.tam.util
                     for (int i = 0; i < dim; i += 1)
                     {
                         var temp_BinaryWriter = new BinaryWriter(f);
-                        temp_BinaryWriter.Write((Int32)in_Renamed[i]);
+                        temp_BinaryWriter.Write(in_Renamed[i]);
                         //f.Write((Int32)in_Renamed[i]);
                     }
                 }
@@ -407,15 +407,15 @@ namespace nom.tam.util
                     f.WriteArray(ch);
                 Console.Out.WriteLine($"  BDS Chr write: {(2 * dim * numIts) / (1000 * deltaTime())}");
                 for (int i = 0; i < numIts; i += 1)
-                    f.WriteArray((byte[])by);
+                    f.WriteArray(by);
                 Console.Out.WriteLine($"  BDS Byt write: {(1 * dim * numIts) / (1000 * deltaTime())}");
                 for (int i = 0; i < numIts; i += 1)
                     f.WriteArray(bl);
                 Console.Out.WriteLine($"  BDS Boo write: {(1 * dim * numIts) / (1000 * deltaTime())}");
 
-                f.Write((byte)bs);
-                f.Write((Char)cs);
-                f.Write((Int16)ss);
+                f.Write(bs);
+                f.Write(cs);
+                f.Write(ss);
                 f.Write(is_Renamed);
                 f.Write(ls);
                 f.Write(fs);
@@ -450,7 +450,7 @@ namespace nom.tam.util
                     f.ReadArray(ch2);
                 Console.Out.WriteLine($"  BDS Chr read:  {(2 * dim * numIts) / (1000 * deltaTime())}");
                 for (int i = 0; i < numIts; i += 1)
-                    f.ReadArray((byte[])by2);
+                    f.ReadArray(by2);
                 Console.Out.WriteLine($"  BDS Byt read:  {(1 * dim * numIts) / (1000 * deltaTime())}");
                 for (int i = 0; i < numIts; i += 1)
                     f.ReadArray(bl2);
@@ -616,9 +616,9 @@ namespace nom.tam.util
                 f.WriteArray(bl);
             Console.Out.WriteLine($"  BF  Boo write: {(1 * dim * numIts) / (1000 * deltaTime())}");
 
-            f.Write((byte)bs);
-            f.Write((Char)cs);
-            f.Write((Int16)ss);
+            f.Write(bs);
+            f.Write(cs);
+            f.Write(ss);
             f.Write(is_Renamed);
             f.Write(ls);
             f.Write(fs);

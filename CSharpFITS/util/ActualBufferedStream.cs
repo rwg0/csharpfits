@@ -29,10 +29,7 @@ namespace nom.tam.util
         #region properties
         public int BufferSize
         {
-            get
-            {
-                return _bufferSize;
-            }
+            get => _bufferSize;
             set
             {
                 _bufferSize = value;

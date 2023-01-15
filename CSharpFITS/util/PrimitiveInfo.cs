@@ -28,12 +28,12 @@ namespace nom.tam.util
             sizes[typeof(char)] = 1;//BitConverter.GetBytes('a').Length;
             sizes[typeof(short)] = BitConverter.GetBytes((short)0).Length;
             sizes[typeof(ushort)] = BitConverter.GetBytes((ushort)0).Length;
-            sizes[typeof(int)] = BitConverter.GetBytes((int)0).Length;
+            sizes[typeof(int)] = BitConverter.GetBytes(0).Length;
             sizes[typeof(uint)] = BitConverter.GetBytes((uint)0).Length;
             sizes[typeof(long)] = BitConverter.GetBytes((long)0).Length;
             sizes[typeof(ulong)] = BitConverter.GetBytes((ulong)0).Length;
             sizes[typeof(float)] = BitConverter.GetBytes((float)0.0).Length;
-            sizes[typeof(double)] = BitConverter.GetBytes((double)0.0).Length;
+            sizes[typeof(double)] = BitConverter.GetBytes(0.0).Length;
         }
 
     }

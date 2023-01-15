@@ -46,14 +46,8 @@ namespace nom.tam.util
 
         public Object DefaultValue
         {
-            get
-            {
-                return _defaultValue;
-            }
-            set
-            {
-                _defaultValue = value;
-            }
+            get => _defaultValue;
+            set => _defaultValue = value;
         }
 
         public DefaultValueHashtable() : this(null)

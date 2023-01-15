@@ -31,26 +31,14 @@ namespace nom.tam.util
 
         public bool Val
         {
-            get
-            {
-                return _val;
-            }
-            set
-            {
-                _val = value;
-            }
+            get => _val;
+            set => _val = value;
         }
 
         public bool IsNull
         {
-            get
-            {
-                return _isNull;
-            }
-            set
-            {
-                _isNull = value;
-            }
+            get => _isNull;
+            set => _isNull = value;
         }
 
         protected bool _val;

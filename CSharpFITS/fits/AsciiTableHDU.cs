@@ -21,24 +21,12 @@ namespace nom.tam.fits
     {
         /// <summary> Check that this HDU has a valid header.</summary>
         /// <returns> <CODE>true</CODE> if this HDU has a valid header.</returns>
-        public virtual bool HasHeader
-        {
-            get
-            {
-                return IsHeader(myHeader);
-            }
+        public virtual bool HasHeader => IsHeader(myHeader);
 
-        }
         /// <summary>
         /// Returns data object of the AsciiTableHDU
         /// </summary>
-        public override Data Data
-        {
-            get
-            {
-                return data;
-            }
-        }
+        public override Data Data => data;
 
         /// <summary>Just a copy of myData with the correct type</summary>
         internal AsciiTable data;
@@ -248,13 +236,6 @@ namespace nom.tam.fits
 
         /// Suggested in .97 version
         /// <summary>Return the keyword column stems for an ASCII table.</summary>
-        public override string[] ColumnKeyStems
-        {
-            get
-            {
-                return keyStems;
-            }
-        }
-
+        public override string[] ColumnKeyStems => keyStems;
     }
 }

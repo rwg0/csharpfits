@@ -87,10 +87,7 @@ namespace nom.tam.util
 
                 return keyed[key];
             }
-            set
-            {
-                Add(key, value);
-            }
+            set => Add(key, value);
         }
 
         // suggested in .99.1 version: 
@@ -112,13 +109,8 @@ namespace nom.tam.util
 
 
         /// <summary>Is the HashedList empty?</summary>
-        public bool Empty
-        {
-            get
-            {
-                return keyed.Count == 0;
-            }
-        }
+        public bool Empty => keyed.Count == 0;
+
         #endregion
 
         /*
@@ -345,13 +337,7 @@ namespace nom.tam.util
                 //System.Console.Out.WriteLine("Cursor Started from position: #" + current);
             }
 
-            protected HashedList Enclosing_Instance
-            {
-                get
-                {
-                    return enclosingInstance;
-                }
-            }
+            protected HashedList Enclosing_Instance => enclosingInstance;
 
             private readonly HashedList enclosingInstance;
             /// <summary>The element that will be returned by next.</summary>
@@ -541,36 +527,19 @@ namespace nom.tam.util
 
         #region ICollection Members
 
-        public bool IsSynchronized
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool IsSynchronized => false;
+
         /// <summary>
         /// Gets the count of hashtable
         /// </summary>
-        public int Count
-        {
-            get
-            {
-                return keyed.Count;
-            }
-        }
+        public int Count => keyed.Count;
 
         public void CopyTo(Array array, int index)
         {
             throw new InvalidCastException("Sorry, elements of this list can't be copied into an array.");
         }
 
-        public object SyncRoot
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public object SyncRoot => this;
 
         /// <summary>Convert to an array of objects</summary>
         public Object[] toArray()
@@ -602,13 +571,8 @@ namespace nom.tam.util
 
         #region IDictionary Members
 
-        public bool IsReadOnly
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool IsReadOnly => false;
+
         /// <summary>
         /// gets the current cursor
         /// </summary>
@@ -757,32 +721,14 @@ namespace nom.tam.util
         /// <summary>
         /// gets the values in hashtable
         /// </summary>
-        public ICollection Values
-        {
-            get
-            {
-                return keyed.Values;
-            }
-        }
+        public ICollection Values => keyed.Values;
+
         /// <summary>
         /// Gets the keys in hashtable
         /// </summary>
-        public ICollection Keys
-        {
-            get
-            {
-                return keyed.Keys;
-            }
-        }
+        public ICollection Keys => keyed.Keys;
 
-        public bool IsFixedSize
-        {
-            get
-            {
-                return false;
-            }
-        }
-
+        public bool IsFixedSize => false;
 
         #endregion
 

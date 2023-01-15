@@ -30,10 +30,7 @@ namespace nom.tam.fits
         #region properties
         public StringWriteMode WriteMode
         {
-            get
-            {
-                return _writeMode;
-            }
+            get => _writeMode;
             set
             {
                 _writeMode = value;
@@ -44,10 +41,7 @@ namespace nom.tam.fits
         // make this fix things
         public int StringTruncationLength
         {
-            get
-            {
-                return _stringTruncationLength;
-            }
+            get => _stringTruncationLength;
             set
             {
                 _stringTruncationLength = value;
@@ -57,10 +51,7 @@ namespace nom.tam.fits
 
         public bool PadLeft
         {
-            get
-            {
-                return _padLeft;
-            }
+            get => _padLeft;
             set
             {
                 _padLeft = value;
@@ -70,10 +61,7 @@ namespace nom.tam.fits
 
         public char PadChar
         {
-            get
-            {
-                return _padChar;
-            }
+            get => _padChar;
             set
             {
                 _padChar = value;
@@ -457,7 +445,7 @@ namespace nom.tam.fits
             }
 
             // pad
-            s.Write(new byte[FitsUtil.Padding((long)nRows * (long)_rowSizeInBytes)]);
+            s.Write(new byte[FitsUtil.Padding(nRows * (long)_rowSizeInBytes)]);
 
             return nRows;
         }
@@ -561,7 +549,7 @@ namespace nom.tam.fits
             // pad the table.  if there's a heap, pad the heap instead
             if (!_hasStrings)
             {
-                int pad = FitsUtil.Padding((long)nRows * (long)_rowSizeInBytes);
+                int pad = FitsUtil.Padding(nRows * (long)_rowSizeInBytes);
                 s.Write(new byte[pad], 0, pad);
             }
             s.Flush();
@@ -575,7 +563,7 @@ namespace nom.tam.fits
             // fix NAXIS1
             if (_hasStrings)
             {
-                long theap = (long)nRows * (long)_rowSizeInBytes;
+                long theap = nRows * (long)_rowSizeInBytes;
                 int pad = FitsUtil.Padding(theap + heapS.Position);
                 int pcount = (int)heapS.Position + pad;
                 // here we correct for swapping out actual strings with heap indices/lengths
@@ -624,7 +612,7 @@ namespace nom.tam.fits
             if (_hasStrings)
             {
                 // calculate the pad
-                int pad = FitsUtil.Padding((long)nRows * (long)_rowSizeInBytes + heapS.Position);
+                int pad = FitsUtil.Padding(nRows * (long)_rowSizeInBytes + heapS.Position);
 
                 s.Seek(heapMark, SeekOrigin.Begin);
 
@@ -713,7 +701,7 @@ namespace nom.tam.fits
             {
                 heapS.Flush();
                 int theap = (nRows * _rowSizeInBytes);
-                int pad = FitsUtil.Padding((long)theap + heapS.Position);
+                int pad = FitsUtil.Padding(theap + heapS.Position);
                 int pcount = (int)heapS.Position + pad;
                 // here we correct for swapping out actual strings with heap indices/lengths
                 myHeader.RemoveCard("NAXIS1");
@@ -775,7 +763,7 @@ namespace nom.tam.fits
             // if there's a heap, pad the heap instead of the table
             if (!_doHeap)
             {
-                int pad = FitsUtil.Padding((long)nRows * (long)_rowSizeInBytes);
+                int pad = FitsUtil.Padding(nRows * (long)_rowSizeInBytes);
                 s.Write(new byte[pad], 0, pad);
             }
             #endregion
@@ -784,7 +772,7 @@ namespace nom.tam.fits
             if (_doHeap)
             {
                 // calculate the pad
-                int pad = FitsUtil.Padding((long)nRows * (long)_rowSizeInBytes + heapS.Position);
+                int pad = FitsUtil.Padding(nRows * (long)_rowSizeInBytes + heapS.Position);
 
                 // write to the main stream
                 heapS.Seek(0, SeekOrigin.Begin);
@@ -958,7 +946,7 @@ namespace nom.tam.fits
                     tableWidth += byteWidths[i];
                 }
             }
-            int pad = FitsUtil.Padding((long)nRows * (long)tableWidth);
+            int pad = FitsUtil.Padding(nRows * (long)tableWidth);
             s.Write(new byte[pad], 0, pad);
             #endregion
         }

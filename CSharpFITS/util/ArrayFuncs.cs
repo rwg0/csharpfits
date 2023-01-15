@@ -588,7 +588,7 @@ namespace nom.tam.util
                 int i = offset;
                 for (IEnumerator e = ((Array)input).GetEnumerator(); e.MoveNext();)
                 {
-                    Object a = (Object)e.Current;
+                    Object a = e.Current;
                     result += DoFlatten(a, output, offset + result);
                 }
             }

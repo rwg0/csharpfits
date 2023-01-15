@@ -36,14 +36,8 @@ namespace nom.tam.util
         //public virtual HeapStream Heap
         public virtual Stream Heap
         {
-            get
-            {
-                return _heapStream;
-            }
-            set
-            {
-                _heapStream = value;
-            }
+            get => _heapStream;
+            set => _heapStream = value;
         }
 
         public static ByteRenderer GetByteRenderer(Type t)
@@ -134,10 +128,7 @@ namespace nom.tam.util
             //public override HeapStream Heap
             public override Stream Heap
             {
-                get
-                {
-                    return _heapStream;
-                }
+                get => _heapStream;
                 set
                 {
                     _heapStream = value;
@@ -219,7 +210,7 @@ namespace nom.tam.util
                     }
                     else
                     {
-                        bytes = BitConverter.GetBytes((int)0);
+                        bytes = BitConverter.GetBytes(0);
                     }
                     //bytes = BitConverter.GetBytes(s.Length > 0 ? heapPos : 0);
                     Array.Reverse(bytes);
@@ -342,7 +333,7 @@ namespace nom.tam.util
                 {
                     if (input[i].IsNull)
                     {
-                        s.WriteByte((byte)0);
+                        s.WriteByte(0);
                     }
                     else if (input[i].Val)
                     {

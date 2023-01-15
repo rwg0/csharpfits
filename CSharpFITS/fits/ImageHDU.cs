@@ -19,13 +19,7 @@ namespace nom.tam.fits
 	public class ImageHDU : BasicHDU
     {
         /// <summary>Indicate that Images can appear at the beginning of a FITS dataset</summary>
-        internal override bool CanBePrimary
-        {
-            get
-            {
-                return true;
-            }
-        }
+        internal override bool CanBePrimary => true;
 
         /// <summary>Change the Image from/to primary</summary>
         internal override bool PrimaryHDU
@@ -54,13 +48,7 @@ namespace nom.tam.fits
         /// <summary>
         /// returns ImageTiler instance
         /// </summary>
-		public virtual ImageTiler Tiler
-        {
-            get
-            {
-                return ((ImageData)myData).Tiler;
-            }
-        }
+		public virtual ImageTiler Tiler => ((ImageData)myData).Tiler;
 
         /// <summary>Build an image HDU using the supplied data.</summary>
         /// <param name="obj">the data used to build the image.</param>

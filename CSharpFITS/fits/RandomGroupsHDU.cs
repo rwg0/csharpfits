@@ -26,13 +26,7 @@ namespace nom.tam.fits
     public class RandomGroupsHDU : BasicHDU
     {
         /// <summary>Indicate that a RandomGroupsHDU can come at the beginning of a FITS file.</summary>
-        internal override bool CanBePrimary
-        {
-            get
-            {
-                return true;
-            }
-        }
+        internal override bool CanBePrimary => true;
 
         /// <summary>Move a RandomGroupsHDU to or from the beginning
         /// of a FITS file.  Note that the FITS standard only
@@ -63,13 +57,7 @@ namespace nom.tam.fits
         }
         /// <summary>Check that this HDU has a valid header.</summary>
         /// <returns> <CODE>true</CODE> if this HDU has a valid header.</returns>
-        public virtual bool HasHeader
-        {
-            get
-            {
-                return IsHeader(myHeader);
-            }
-        }
+        public virtual bool HasHeader => IsHeader(myHeader);
 
         //internal Object dataArray;
 
@@ -211,8 +199,8 @@ namespace nom.tam.fits
             Object[] sampleRow = GenerateSampleRow(hdr);
             for (int i = 0; i < gcount; i += 1)
             {
-                ((Object[][])dataArray)[i][0] = ((Object[])ArrayFuncs.DeepClone(sampleRow))[0];
-                ((Object[][])dataArray)[i][1] = ((Object[])ArrayFuncs.DeepClone(sampleRow))[1];
+                dataArray[i][0] = ((Object[])ArrayFuncs.DeepClone(sampleRow))[0];
+                dataArray[i][1] = ((Object[])ArrayFuncs.DeepClone(sampleRow))[1];
             }
             return new RandomGroupsData(dataArray);
         }

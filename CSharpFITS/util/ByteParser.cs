@@ -47,10 +47,7 @@ namespace nom.tam.util
         /// <summary>Set the buffer for the parser</summary>
         public virtual byte[] Buffer
         {
-            get
-            {
-                return input;
-            }
+            get => input;
 
             set
             {
@@ -63,79 +60,41 @@ namespace nom.tam.util
 		public virtual int Offset
         {
 
-            get
-            {
-                return offset;
-            }
+            get => offset;
 
-            set
-            {
-                offset = value;
-            }
+            set => offset = value;
         }
         /// <summary>Do we require a field to completely fill up the specified
         /// length (with optional leading and trailing white space.
         /// </summary>
         public virtual bool FillFields
         {
-            set
-            {
-                fillFields = value;
-            }
+            set => fillFields = value;
         }
         /// <summary>Get the number of characters used to parse the previous
         /// number (or the length of the previous String returned).
         /// </summary>
-        public virtual int NumberLength
-        {
-            get
-            {
-                return numberLength;
-            }
-        }
+        public virtual int NumberLength => numberLength;
+
         /// <summary>Read in the buffer until a double is read.  This will read
         /// the entire buffer if fillFields is set.
         /// </summary>
         /// <returns> The value found.
         /// 
         /// </returns>
-        public virtual double Double
-        {
-            get
-            {
-                return GetDouble(input.Length - offset);
-            }
-        }
+        public virtual double Double => GetDouble(input.Length - offset);
+
         /// <summary>Get a floating point value from the buffer.  (see getDouble(int())
         /// </summary>
-        public virtual float Float
-        {
-            get
-            {
-                return (float)GetDouble(input.Length - offset);
-            }
+        public virtual float Float => (float)GetDouble(input.Length - offset);
 
-        }
         /// <summary>Look for an integer at the beginning of the buffer 
         /// </summary>
-        public virtual int Int
-        {
-            get
-            {
-                return GetInt(input.Length - offset);
-            }
+        public virtual int Int => GetInt(input.Length - offset);
 
-        }
         /// <summary>Get a boolean value from the beginning of the buffer 
         /// </summary>
-        public virtual bool Boolean
-        {
-            get
-            {
-                return GetBoolean(input.Length - offset);
-            }
-
-        }
+        public virtual bool Boolean => GetBoolean(input.Length - offset);
 
         #endregion
 

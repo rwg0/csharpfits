@@ -23,42 +23,19 @@ namespace nom.tam.fits
         /// <summary>
         /// Returns if stream is rewritable
         /// </summary>
-        public virtual bool Rewriteable
-        {
-            get
-            {
-                // change suggested in .99.1 version: 
-                return ((fileOffset >= 0) && (input is ArrayDataIO) && (!expanded));
-            }
-        }
+        public virtual bool Rewriteable =>
+            // change suggested in .99.1 version: 
+            ((fileOffset >= 0) && (input is ArrayDataIO) && (!expanded));
 
         /// <summary>Get the current offset within the heap.</summary>
-		public virtual int Offset
-        {
-            get
-            {
-                return heapOffset;
-            }
-
-        }
+		public virtual int Offset => heapOffset;
 
         /// <summary>Return the size of the heap using the more bean compatbile format.</summary>
-        public virtual long Size
-        {
-            get
-            {
-                return GetSize();
-            }
-        }
+        public virtual long Size => GetSize();
 
         /// <summary>Get the file offset of the heap.</summary>
-        public virtual long FileOffset
-        {
-            get
-            {
-                return fileOffset;
-            }
-        }
+        public virtual long FileOffset => fileOffset;
+
         #endregion
 
         #region Instance Variables

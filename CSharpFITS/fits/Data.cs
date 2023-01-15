@@ -39,35 +39,18 @@ namespace nom.tam.fits
         }
 
         /// <summary>Get the file offset</summary>
-        public virtual long FileOffset
-        {
-            get
-            {
-                return fileOffset;
-            }
-        }
+        public virtual long FileOffset => fileOffset;
 
         internal abstract int TrueSize { get; }
         /// <summary>Get the size of the data element in bytes</summary>
-        public virtual long Size
-        {
-            get
-            {
-                return FitsUtil.AddPadding(TrueSize);
-            }
-        }
+        public virtual long Size => FitsUtil.AddPadding(TrueSize);
 
         /// <summary>Return the data array object.</summary>
 		public abstract Object DataArray { get; }
 
         /// <summary>Return the non-FITS data object</summary>
-        public virtual Object Kernel
-        {
-            get
-            {
-                return DataArray;
-            }
-        }
+        public virtual Object Kernel => DataArray;
+
         #endregion
 
         /*

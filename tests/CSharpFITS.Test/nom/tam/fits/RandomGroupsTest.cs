@@ -80,7 +80,7 @@ namespace nom.tam.fits
                 Array[] tfa = (Array[])data[i][1];
                 for (int j = 0; j < pa.Length; j += 1)
                 {
-                    Assertion.AssertEquals($"paramTest:{i} {j}", (float)(i + j), pa[j]);
+                    Assertion.AssertEquals($"paramTest:{i} {j}", i + j, pa[j]);
                 }
                 for (int j = 0; j < fa.Length; j += 1)
                 {
@@ -113,7 +113,7 @@ namespace nom.tam.fits
                 Array[] tfa = (Array[])data[i][1];
                 for (int j = 0; j < pa.Length; j += 1)
                 {
-                    Assertion.AssertEquals($"paramTest:{i} {j}", (float)(i + j), pa[j]);
+                    Assertion.AssertEquals($"paramTest:{i} {j}", i + j, pa[j]);
                 }
                 for (int j = 0; j < fa.Length; j += 1)
                 {

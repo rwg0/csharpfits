@@ -32,14 +32,8 @@ namespace nom.tam.fits
     {
         /// <summary>Get the size in bytes of the data 
         /// </summary>
-		internal override int TrueSize
-        {
-            get
-            {
-                return (int)byteSize;
-            }
+		internal override int TrueSize => (int)byteSize;
 
-        }
         /// <summary>Return the actual data.
         /// Note that this may return a null when
         /// the data is not readable.  It might be better
@@ -69,14 +63,7 @@ namespace nom.tam.fits
         /// <summary>
         /// Returns the ImageTiler instance
         /// </summary>
-		public virtual ImageTiler Tiler
-        {
-            get
-            {
-                return tiler;
-            }
-
-        }
+		public virtual ImageTiler Tiler => tiler;
 
         /// <summary>The size of the data 
         /// </summary>
@@ -101,14 +88,8 @@ namespace nom.tam.fits
             /// Instance of ImageData
             /// </summary>
 			private ImageData enclosingInstance;
-            public ImageData Enclosing_Instance
-            {
-                get
-                {
-                    return enclosingInstance;
-                }
+            public ImageData Enclosing_Instance => enclosingInstance;
 
-            }
             /// <summary>
             /// Stores the dimension of image data array
             /// </summary>
@@ -140,21 +121,9 @@ namespace nom.tam.fits
                 this.enclosingInstance = enclosingInstance;
             }
             private ImageData enclosingInstance;
-            public override Array MemoryImage
-            {
-                get
-                {
-                    return (Array)Enclosing_Instance.dataArray;
-                }
-            }
-            public ImageData Enclosing_Instance
-            {
-                get
-                {
-                    return enclosingInstance;
-                }
+            public override Array MemoryImage => (Array)Enclosing_Instance.dataArray;
 
-            }
+            public ImageData Enclosing_Instance => enclosingInstance;
 
             internal ImageDataTiler(ImageData enclosingInstance, RandomAccess o, long offset, ArrayDesc d) : base(o, offset, d.dims, d.type)
             {
@@ -193,7 +162,7 @@ namespace nom.tam.fits
                 throw new FitsException("Group data treated as images");
             }
 
-            var bitpix = (int)h.GetIntValue("BITPIX", 0);
+            var bitpix = h.GetIntValue("BITPIX", 0);
 
             if (bitpix == 8)
             {
@@ -241,7 +210,7 @@ namespace nom.tam.fits
                     throw new FitsException($"Invalid array dimension:{cdim}");
                 }
                 byteSize *= cdim;
-                dims[ndim - i - 1] = (int)cdim;
+                dims[ndim - i - 1] = cdim;
             }
             byteSize *= Math.Abs(bitpix) / 8;
             if (ndim == 0)
@@ -355,7 +324,7 @@ namespace nom.tam.fits
             if (i.CanSeek)
             {
                 //tiler = new ImageDataTiler(this, (RandomAccess) i, ((RandomAccess) i).FilePointer, dataDescription);
-                tiler = new ImageDataTiler(this, (RandomAccess)i, ((Stream)i).Position, dataDescription);
+                tiler = new ImageDataTiler(this, (RandomAccess)i, i.Position, dataDescription);
                 try
                 {
                     double pos = i.Position;
