@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 using NUnit.Framework;
-
-using nom.tam.fits;
 using nom.tam.image;
 using nom.tam.util;
 
@@ -47,7 +43,7 @@ namespace nom.tam.fits
                 }
             }
 
-            Assertion.AssertEquals("Tiler" + test, sum0, sum1);
+            Assertion.AssertEquals($"Tiler{test}", sum0, sum1);
         }
 
         [Test]

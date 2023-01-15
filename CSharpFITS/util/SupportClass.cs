@@ -1,16 +1,16 @@
 using System;
 namespace nom.tam.util
 {
-  /*
-   * Copyright: Thomas McGlynn 1997-2007.
-   * 
-   * The CSharpFITS package is a C# port of Tom McGlynn's
-   * nom.tam.fits Java package, initially ported by  Samuel Carliles
-   *
-   * Copyright: 2007 Virtual Observatory - India.   
-   *
-   * Use is subject to license terms
-   */
+    /*
+     * Copyright: Thomas McGlynn 1997-2007.
+     * 
+     * The CSharpFITS package is a C# port of Tom McGlynn's
+     * nom.tam.fits Java package, initially ported by  Samuel Carliles
+     *
+     * Copyright: 2007 Virtual Observatory - India.   
+     *
+     * Use is subject to license terms
+     */
     public class SupportClass
     {
         public static int StringIndexOf(String s, Char c, int startIndex)
@@ -84,18 +84,18 @@ namespace nom.tam.util
 
             public Tokenizer(string source)
             {
-                this.elements = new System.Collections.ArrayList();
-                this.elements.AddRange(source.Split(this.delimiters.ToCharArray()));
-                this.RemoveEmptyStrings();
+                elements = new System.Collections.ArrayList();
+                elements.AddRange(source.Split(delimiters.ToCharArray()));
+                RemoveEmptyStrings();
                 this.source = source;
             }
 
             public Tokenizer(string source, string delimiters)
             {
-                this.elements = new System.Collections.ArrayList();
+                elements = new System.Collections.ArrayList();
                 this.delimiters = delimiters;
-                this.elements.AddRange(source.Split(this.delimiters.ToCharArray()));
-                this.RemoveEmptyStrings();
+                elements.AddRange(source.Split(this.delimiters.ToCharArray()));
+                RemoveEmptyStrings();
                 this.source = source;
             }
 
@@ -103,28 +103,28 @@ namespace nom.tam.util
             {
                 get
                 {
-                    return (this.elements.Count);
+                    return (elements.Count);
                 }
             }
 
             public bool HasMoreTokens()
             {
-                return (this.elements.Count > 0);
+                return (elements.Count > 0);
             }
 
             public string NextToken()
             {
                 string result;
-                if (source == "") throw new System.Exception();
+                if (source == "") throw new Exception();
                 else
                 {
-                    this.elements = new System.Collections.ArrayList();
-                    this.elements.AddRange(this.source.Split(delimiters.ToCharArray()));
+                    elements = new System.Collections.ArrayList();
+                    elements.AddRange(source.Split(delimiters.ToCharArray()));
                     RemoveEmptyStrings();
-                    result = (string)this.elements[0];
-                    this.elements.RemoveAt(0);
-                    this.source = this.source.Remove(this.source.IndexOf(result), result.Length);
-                    this.source = this.source.TrimStart(this.delimiters.ToCharArray());
+                    result = (string)elements[0];
+                    elements.RemoveAt(0);
+                    source = source.Remove(source.IndexOf(result), result.Length);
+                    source = source.TrimStart(delimiters.ToCharArray());
                     return result;
                 }
             }
@@ -138,10 +138,10 @@ namespace nom.tam.util
             private void RemoveEmptyStrings()
             {
                 //VJ++ does not treat empty strings as tokens
-                for (int index = 0; index < this.elements.Count; index++)
-                    if ((string)this.elements[index] == "")
+                for (int index = 0; index < elements.Count; index++)
+                    if ((string)elements[index] == "")
                     {
-                        this.elements.RemoveAt(index);
+                        elements.RemoveAt(index);
                         index--;
                     }
             }
@@ -155,7 +155,7 @@ namespace nom.tam.util
         }
 
         /*******************************/
-        public static void WriteStackTrace(System.Exception throwable, System.IO.TextWriter stream)
+        public static void WriteStackTrace(Exception throwable, System.IO.TextWriter stream)
         {
             stream.Write(throwable.StackTrace);
             stream.Flush();
@@ -165,11 +165,11 @@ namespace nom.tam.util
         public class TextNumberFormat
         {
             // Declaration of fields
-            private System.Globalization.NumberFormatInfo numberFormat;
+            private readonly System.Globalization.NumberFormatInfo numberFormat;
             private enum formatTypes { General, Number, Currency, Percent };
-            private int numberFormatType;
+            private readonly int numberFormatType;
             private bool groupingActivated;
-            private string separator;
+            private readonly string separator;
             private int maxIntDigits;
             private int minIntDigits;
             private int maxFractionDigits;
@@ -178,107 +178,107 @@ namespace nom.tam.util
             // CONSTRUCTORS
             public TextNumberFormat()
             {
-                this.numberFormat = new System.Globalization.NumberFormatInfo();
-                this.numberFormatType = (int)TextNumberFormat.formatTypes.General;
-                this.groupingActivated = true;
-                this.separator = this.GetSeparator((int)TextNumberFormat.formatTypes.General);
-                this.maxIntDigits = 127;
-                this.minIntDigits = 1;
-                this.maxFractionDigits = 3;
-                this.minFractionDigits = 0;
+                numberFormat = new System.Globalization.NumberFormatInfo();
+                numberFormatType = (int)formatTypes.General;
+                groupingActivated = true;
+                separator = GetSeparator((int)formatTypes.General);
+                maxIntDigits = 127;
+                minIntDigits = 1;
+                maxFractionDigits = 3;
+                minFractionDigits = 0;
             }
 
-            private TextNumberFormat(TextNumberFormat.formatTypes theType, int digits)
+            private TextNumberFormat(formatTypes theType, int digits)
             {
-                this.numberFormat = System.Globalization.NumberFormatInfo.CurrentInfo;
-                this.numberFormatType = (int)theType;
-                this.groupingActivated = true;
-                this.separator = this.GetSeparator((int)theType);
-                this.maxIntDigits = 127;
-                this.minIntDigits = 1;
-                this.maxFractionDigits = 3;
-                this.minFractionDigits = 0;
+                numberFormat = System.Globalization.NumberFormatInfo.CurrentInfo;
+                numberFormatType = (int)theType;
+                groupingActivated = true;
+                separator = GetSeparator((int)theType);
+                maxIntDigits = 127;
+                minIntDigits = 1;
+                maxFractionDigits = 3;
+                minFractionDigits = 0;
             }
 
-            private TextNumberFormat(TextNumberFormat.formatTypes theType, System.Globalization.CultureInfo cultureNumberFormat, int digits)
+            private TextNumberFormat(formatTypes theType, System.Globalization.CultureInfo cultureNumberFormat, int digits)
             {
-                this.numberFormat = cultureNumberFormat.NumberFormat;
-                this.numberFormatType = (int)theType;
-                this.groupingActivated = true;
-                this.separator = this.GetSeparator((int)theType);
-                this.maxIntDigits = 127;
-                this.minIntDigits = 1;
-                this.maxFractionDigits = 3;
-                this.minFractionDigits = 0;
+                numberFormat = cultureNumberFormat.NumberFormat;
+                numberFormatType = (int)theType;
+                groupingActivated = true;
+                separator = GetSeparator((int)theType);
+                maxIntDigits = 127;
+                minIntDigits = 1;
+                maxFractionDigits = 3;
+                minFractionDigits = 0;
             }
 
             public static TextNumberFormat getTextNumberInstance()
             {
-                TextNumberFormat instance = new TextNumberFormat(TextNumberFormat.formatTypes.Number, 3);
+                TextNumberFormat instance = new TextNumberFormat(formatTypes.Number, 3);
                 return instance;
             }
 
             public static TextNumberFormat getTextNumberCurrencyInstance()
             {
-                TextNumberFormat instance = new TextNumberFormat(TextNumberFormat.formatTypes.Currency, 3);
+                TextNumberFormat instance = new TextNumberFormat(formatTypes.Currency, 3);
                 return instance;
             }
 
             public static TextNumberFormat getTextNumberPercentInstance()
             {
-                TextNumberFormat instance = new TextNumberFormat(TextNumberFormat.formatTypes.Percent, 3);
+                TextNumberFormat instance = new TextNumberFormat(formatTypes.Percent, 3);
                 return instance;
             }
 
             public static TextNumberFormat getTextNumberInstance(System.Globalization.CultureInfo culture)
             {
-                TextNumberFormat instance = new TextNumberFormat(TextNumberFormat.formatTypes.Number, culture, 3);
+                TextNumberFormat instance = new TextNumberFormat(formatTypes.Number, culture, 3);
                 return instance;
             }
 
             public static TextNumberFormat getTextNumberCurrencyInstance(System.Globalization.CultureInfo culture)
             {
-                TextNumberFormat instance = new TextNumberFormat(TextNumberFormat.formatTypes.Currency, culture, 3);
+                TextNumberFormat instance = new TextNumberFormat(formatTypes.Currency, culture, 3);
                 return instance;
             }
 
             public static TextNumberFormat getTextNumberPercentInstance(System.Globalization.CultureInfo culture)
             {
-                TextNumberFormat instance = new TextNumberFormat(TextNumberFormat.formatTypes.Percent, culture, 3);
+                TextNumberFormat instance = new TextNumberFormat(formatTypes.Percent, culture, 3);
                 return instance;
             }
 
-            public System.Object Clone()
+            public Object Clone()
             {
-                return (System.Object)this;
+                return (Object)this;
             }
 
-            public override bool Equals(System.Object textNumberObject)
+            public override bool Equals(Object textNumberObject)
             {
-                return System.Object.Equals((System.Object)this, textNumberObject);
+                return System.Object.Equals((Object)this, textNumberObject);
             }
 
             public string FormatDouble(double number)
             {
-                if (this.groupingActivated)
+                if (groupingActivated)
                 {
-                    return number.ToString(this.GetCurrentFormatString() + this.maxFractionDigits, this.numberFormat);
+                    return number.ToString(GetCurrentFormatString() + maxFractionDigits, numberFormat);
                 }
                 else
                 {
-                    return (number.ToString(this.GetCurrentFormatString() + this.maxFractionDigits, this.numberFormat)).Replace(this.separator, "");
+                    return (number.ToString(GetCurrentFormatString() + maxFractionDigits, numberFormat)).Replace(separator, "");
                 }
             }
 
             public string FormatLong(long number)
             {
-                if (this.groupingActivated)
+                if (groupingActivated)
                 {
-                    return number.ToString(this.GetCurrentFormatString() + this.maxFractionDigits, this.numberFormat);
+                    return number.ToString(GetCurrentFormatString() + maxFractionDigits, numberFormat);
                 }
                 else
                 {
-                    return (number.ToString(this.GetCurrentFormatString() + this.maxFractionDigits, this.numberFormat)).Replace(this.separator, "");
+                    return (number.ToString(GetCurrentFormatString() + maxFractionDigits, numberFormat)).Replace(separator, "");
                 }
             }
 
@@ -289,27 +289,27 @@ namespace nom.tam.util
 
             public override int GetHashCode()
             {
-                return this.GetHashCode();
+                return GetHashCode();
             }
 
             private string GetCurrentFormatString()
             {
                 string currentFormatString = "n";  //Default value
-                switch (this.numberFormatType)
+                switch (numberFormatType)
                 {
-                    case (int)TextNumberFormat.formatTypes.Currency:
+                    case (int)formatTypes.Currency:
                         currentFormatString = "c";
                         break;
 
-                    case (int)TextNumberFormat.formatTypes.General:
-                        currentFormatString = "n" + this.numberFormat.NumberDecimalDigits;
+                    case (int)formatTypes.General:
+                        currentFormatString = $"n{numberFormat.NumberDecimalDigits}";
                         break;
 
-                    case (int)TextNumberFormat.formatTypes.Number:
-                        currentFormatString = "n" + this.numberFormat.NumberDecimalDigits;
+                    case (int)formatTypes.Number:
+                        currentFormatString = $"n{numberFormat.NumberDecimalDigits}";
                         break;
 
-                    case (int)TextNumberFormat.formatTypes.Percent:
+                    case (int)formatTypes.Percent:
                         currentFormatString = "p";
                         break;
                 }
@@ -322,20 +322,20 @@ namespace nom.tam.util
 
                 switch (numberFormatType)
                 {
-                    case (int)TextNumberFormat.formatTypes.Currency:
-                        separatorItem = this.numberFormat.CurrencyGroupSeparator;
+                    case (int)formatTypes.Currency:
+                        separatorItem = numberFormat.CurrencyGroupSeparator;
                         break;
 
-                    case (int)TextNumberFormat.formatTypes.General:
-                        separatorItem = this.numberFormat.NumberGroupSeparator;
+                    case (int)formatTypes.General:
+                        separatorItem = numberFormat.NumberGroupSeparator;
                         break;
 
-                    case (int)TextNumberFormat.formatTypes.Number:
-                        separatorItem = this.numberFormat.NumberGroupSeparator;
+                    case (int)formatTypes.Number:
+                        separatorItem = numberFormat.NumberGroupSeparator;
                         break;
 
-                    case (int)TextNumberFormat.formatTypes.Percent:
-                        separatorItem = this.numberFormat.PercentGroupSeparator;
+                    case (int)formatTypes.Percent:
+                        separatorItem = numberFormat.PercentGroupSeparator;
                         break;
                 }
                 return separatorItem;
@@ -345,11 +345,11 @@ namespace nom.tam.util
             {
                 get
                 {
-                    return (this.groupingActivated);
+                    return (groupingActivated);
                 }
                 set
                 {
-                    this.groupingActivated = value;
+                    groupingActivated = value;
                 }
             }
 
@@ -357,11 +357,11 @@ namespace nom.tam.util
             {
                 get
                 {
-                    return this.minIntDigits;
+                    return minIntDigits;
                 }
                 set
                 {
-                    this.minIntDigits = value;
+                    minIntDigits = value;
                 }
             }
 
@@ -369,11 +369,11 @@ namespace nom.tam.util
             {
                 get
                 {
-                    return this.maxIntDigits;
+                    return maxIntDigits;
                 }
                 set
                 {
-                    this.maxIntDigits = value;
+                    maxIntDigits = value;
                 }
             }
 
@@ -381,11 +381,11 @@ namespace nom.tam.util
             {
                 get
                 {
-                    return this.minFractionDigits;
+                    return minFractionDigits;
                 }
                 set
                 {
-                    this.minFractionDigits = value;
+                    minFractionDigits = value;
                 }
             }
 
@@ -393,11 +393,11 @@ namespace nom.tam.util
             {
                 get
                 {
-                    return this.maxFractionDigits;
+                    return maxFractionDigits;
                 }
                 set
                 {
-                    this.maxFractionDigits = value;
+                    maxFractionDigits = value;
                 }
             }
         }
@@ -455,6 +455,6 @@ namespace nom.tam.util
             return c;
         }
 
-        static public System.Random Random = new System.Random();
+        public static Random Random = new Random();
     }
 }

@@ -10,36 +10,35 @@ namespace nom.tam.util
      *
      * Use is subject to license terms
      */
-    using System;
     using System.IO;
 
     /// <summary>
     /// summary description for ConfigStream.
-	/// </summary>
-  public class ConfigStream : AdapterStream
-  {
-    public override bool CanSeek
+    /// </summary>
+    public class ConfigStream : AdapterStream
     {
-      get
-      {
-        if(_canSeek)
+        public override bool CanSeek
         {
-          return base.CanSeek;
+            get
+            {
+                if (_canSeek)
+                {
+                    return base.CanSeek;
+                }
+
+                return false;
+            }
         }
 
-        return false;
-      }
-    }
+        public ConfigStream(Stream s) : base(s)
+        {
+        }
 
-    public ConfigStream(Stream s) : base(s)
-    {
-    }
+        public void SetCanSeek(bool canSeek)
+        {
+            _canSeek = canSeek;
+        }
 
-    public void SetCanSeek(bool canSeek)
-    {
-      _canSeek = canSeek;
+        bool _canSeek;
     }
-
-    bool _canSeek;
-  }
 }

@@ -1,11 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using NUnit.Framework;
-
-using nom.tam.fits;
-using nom.tam.image;
-using nom.tam.util;
 
 namespace nom.tam.fits
 {
@@ -45,7 +39,7 @@ namespace nom.tam.fits
                 FitsDate fd = new FitsDate(arg);
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return false;
             }

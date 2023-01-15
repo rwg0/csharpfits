@@ -1,11 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using NUnit.Framework;
-
-using nom.tam.fits;
-using nom.tam.image;
-using nom.tam.util;
 
 namespace nom.tam.fits
 {
@@ -15,9 +9,7 @@ namespace nom.tam.fits
         [Test]
         public void Test1()
         {
-
-            HeaderCard p;
-            p = new HeaderCard("SIMPLE  =                     T");
+            var p = new HeaderCard("SIMPLE  =                     T");
 
             Assertion.AssertEquals("t1", "SIMPLE", p.Key);
             Assertion.AssertEquals("t2", "T", p.Value);
@@ -34,7 +26,7 @@ namespace nom.tam.fits
             Assertion.AssertEquals("t8", "Comment", p.Comment);
 
             String lng = "111111111111111111111111111111111111111111111111111111111111111111111111";
-            p = new HeaderCard("COMMENT " + lng);
+            p = new HeaderCard($"COMMENT {lng}");
             Assertion.AssertEquals("t9", "COMMENT", p.Key);
             Assertion.AssertNull("t10", p.Value);
             Assertion.AssertEquals("t11", lng, p.Comment);
@@ -45,14 +37,14 @@ namespace nom.tam.fits
                 //
                 p = new HeaderCard("VALUE   = '   ");
             }
-            catch (Exception )
+            catch (Exception)
             {
                 thrown = true;
             }
             Assertion.AssertEquals("t12", true, thrown);
 
 
-            p = new HeaderCard("COMMENT " + lng + lng);
+            p = new HeaderCard($"COMMENT {lng}{lng}");
             Assertion.AssertEquals("t13", lng, p.Comment);
 
         }
@@ -86,7 +78,7 @@ namespace nom.tam.fits
             {
                 p = new HeaderCard("LONGKEYWORD", 123, "COMMENT");
             }
-            catch (Exception )
+            catch (Exception)
             {
                 thrown = true;
             }
@@ -98,7 +90,7 @@ namespace nom.tam.fits
             {
                 p = new HeaderCard("KEY", lng, "COMMENT");
             }
-            catch (Exception )
+            catch (Exception)
             {
                 thrown = true;
             }
@@ -117,7 +109,7 @@ namespace nom.tam.fits
             {
                 hc = new HeaderCard(key, 123, "Comment");
             }
-            catch (Exception )
+            catch (Exception)
             {
                 thrown = true;
             }

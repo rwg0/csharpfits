@@ -14,58 +14,58 @@ namespace nom.tam.util
     using System.Collections;
 
     /// <summary>
-	/// summary description for DefaultValueHashtable.
+    /// summary description for DefaultValueHashtable.
     /// </summary>
-  public class DefaultValueHashtable : Hashtable
-  {
-    public override Object this[Object key]
+    public class DefaultValueHashtable : Hashtable
     {
-      get
-      {
-        _result = base[key];
-        if(_result == null)
+        public override Object this[Object key]
         {
-          _result = DefaultValue;
+            get
+            {
+                _result = base[key];
+                if (_result == null)
+                {
+                    _result = DefaultValue;
+                }
+
+                return _result;
+            }
+
+            set
+            {
+                if (key == null)
+                {
+                    DefaultValue = value;
+                }
+                else
+                {
+                    base[key] = value;
+                }
+            }
         }
 
-        return _result;
-      }
-
-      set
-      {
-        if(key == null)
+        public Object DefaultValue
         {
-          DefaultValue = value;
+            get
+            {
+                return _defaultValue;
+            }
+            set
+            {
+                _defaultValue = value;
+            }
         }
-        else
+
+        public DefaultValueHashtable() : this(null)
         {
-          base[key] = value;
         }
-      }
-    }
 
-    public Object DefaultValue
-    {
-      get
-      {
-        return _defaultValue;
-      }
-      set
-      {
-        _defaultValue = value;
-      }
-    }
+        public DefaultValueHashtable(Object defaultValue) : base()
+        {
+            DefaultValue = defaultValue;
+        }
 
-    public DefaultValueHashtable() : this(null)
-    {
+        protected Object _result = null;
+        protected Object _defaultValue = null;
     }
-
-    public DefaultValueHashtable(Object defaultValue) : base()
-    {
-      DefaultValue = defaultValue;
-    }
-
-    protected Object _result = null;
-    protected Object _defaultValue = null;
-  }
 }

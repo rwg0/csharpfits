@@ -10,8 +10,6 @@ namespace nom.tam.util
      *
      * Use is subject to license terms
      */
-    using System;
-
     /// <Remarks>These packages define the methods which indicate that
     /// an i/o stream may be accessed in arbitrary order.
     /// The method signatures are taken from RandomAccessFile

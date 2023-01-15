@@ -9,7 +9,6 @@ namespace nom.tam.util
     * derived software.
     */
     using System;
-    using nom.tam.util;
     using System.Collections;
     using NUnit.Framework;
 
@@ -52,7 +51,7 @@ namespace nom.tam.util
             h.Add("key2", 21);
 
             Cursor c = h.GetCursor();
-            Console.WriteLine("current: " + ((DictionaryEntry)c.Current).Value );
+            Console.WriteLine($"current: {((DictionaryEntry)c.Current).Value}");
         }
 
         [Test]
@@ -62,7 +61,6 @@ namespace nom.tam.util
             HashedList h2 = new HashedList();
 
             Cursor i = h1.GetCursor(-1);
-            Cursor j;
 
 
             // Add a few unkeyed rows.
@@ -70,7 +68,7 @@ namespace nom.tam.util
             h1.Add("Row 2");
             h1.Add("Row 3");
 
-            System.Console.Out.WriteLine("***** Collection methods *****\n");
+            Console.Out.WriteLine("***** Collection methods *****\n");
             show("Three unkeyed elements", h1);
             h1.RemoveUnkeyedObject("Row 2");
             show("Did we remove Row 2?", h1);
@@ -96,31 +94,31 @@ namespace nom.tam.util
             h1.Add("key 2", "Row 2");
             h1.Add("key 3", "Row 3");
             show("Three elements again!", h1);
-            System.Console.Out.WriteLine("Check contains (true):" + h1.ContainsValue("Row 2"));
+            Console.Out.WriteLine($"Check contains (true):{h1.ContainsValue("Row 2")}");
 
 
             // Inserting Rows in h2.
             h2.Add("key 4", "Row 4");
             h2.Add("key 5", "Row 5");
-            System.Console.Out.WriteLine("Check containsAll (false):" + h1.ContainsAll(h2));
+            Console.Out.WriteLine($"Check containsAll (false):{h1.ContainsAll(h2)}");
 
             h1.AddAll(h2);
             show("Should have 5 elements now", h1);
-            System.Console.Out.WriteLine("Check containsAll (true):" + h1.ContainsAll(h2));
-            System.Console.Out.WriteLine("Check contains (true):" + h1.ContainsKey("key 4"));
+            Console.Out.WriteLine($"Check containsAll (true):{h1.ContainsAll(h2)}");
+            Console.Out.WriteLine($"Check contains (true):{h1.ContainsKey("key 4")}");
 
             h1.RemoveValue("Row 4");
             show("Dropped Row 4:", h1);
-            System.Console.Out.WriteLine("Check containsAll (false):" + h1.ContainsAll(h2));
-            System.Console.Out.WriteLine("Check contains (false):" + h1.ContainsKey("Row 4"));
+            Console.Out.WriteLine($"Check containsAll (false):{h1.ContainsAll(h2)}");
+            Console.Out.WriteLine($"Check contains (false):{h1.ContainsKey("Row 4")}");
 
-            System.Console.Out.WriteLine("Check isEmpty (false):" + h1.Empty);
+            Console.Out.WriteLine($"Check isEmpty (false):{h1.Empty}");
             h1.RemoveValue("Row 1");
             h1.RemoveValue("Row 2");
             h1.RemoveValue("Row 3");
             h1.RemoveValue("Row 5");
             show("Removed all elements", h1);
-            System.Console.Out.WriteLine("Check isEmpty (true):" + h1.Empty);
+            Console.Out.WriteLine($"Check isEmpty (true):{h1.Empty}");
 
 
             h1.Add("Row 1");
@@ -135,13 +133,12 @@ namespace nom.tam.util
             show("Testing retainAll now just 2?", h1);
 
 
-            System.Console.Out.WriteLine("\n\n**** Test Cursor **** \n");
+            Console.Out.WriteLine("\n\n**** Test Cursor **** \n");
 
-            j = h1.GetCursor();
+            var j = h1.GetCursor();
             while (j.MoveNext())
             {
-                System.Console.Out.WriteLine("Cursor got: [" + ((DictionaryEntry)j.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)j.Current).Value + "\"");
+                Console.Out.WriteLine($"Cursor got: [{((DictionaryEntry)j.Current).Key}] \"{((DictionaryEntry)j.Current).Value}\"");
             }
 
             h1.Clear();
@@ -155,55 +152,39 @@ namespace nom.tam.util
             j.MoveNext();
             j.Remove(); // Should get rid of second row
             show("Removed second row with cursor", h1);
-            System.Console.Out.WriteLine("Cursor should still be OK:" + j.MoveNext() + " [" +
-                                                                ((DictionaryEntry)j.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)j.Current).Value + "\"");
-            System.Console.Out.WriteLine("Cursor should still be OK:" + j.MoveNext() + " [" +
-                                                                ((DictionaryEntry)j.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)j.Current).Value + "\"");
-            System.Console.Out.WriteLine("Cursor should be done:" + j.MoveNext());
+            Console.Out.WriteLine(
+                $"Cursor should still be OK:{j.MoveNext()} [{((DictionaryEntry)j.Current).Key}] \"{((DictionaryEntry)j.Current).Value}\"");
+            Console.Out.WriteLine(
+                $"Cursor should still be OK:{j.MoveNext()} [{((DictionaryEntry)j.Current).Key}] \"{((DictionaryEntry)j.Current).Value}\"");
+            Console.Out.WriteLine($"Cursor should be done:{j.MoveNext()}");
 
-            System.Console.Out.WriteLine("\n\n**** HashedListCursor ****\n");
+            Console.Out.WriteLine("\n\n**** HashedListCursor ****\n");
             i = h1.GetCursor(-1);
-            System.Console.Out.WriteLine("Cursor should still be OK:" + i.MoveNext() + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
-            System.Console.Out.WriteLine("Cursor should still be OK:" + i.MoveNext() + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
-            System.Console.Out.WriteLine("Cursor should still be OK:" + i.MoveNext() + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
-            System.Console.Out.WriteLine("Cursor should still be OK:" + i.MoveNext() + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
-            System.Console.Out.WriteLine("Cursor should be done:" + i.MoveNext());
+            Console.Out.WriteLine(
+                $"Cursor should still be OK:{i.MoveNext()} [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
+            Console.Out.WriteLine(
+                $"Cursor should still be OK:{i.MoveNext()} [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
+            Console.Out.WriteLine(
+                $"Cursor should still be OK:{i.MoveNext()} [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
+            Console.Out.WriteLine(
+                $"Cursor should still be OK:{i.MoveNext()} [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
+            Console.Out.WriteLine($"Cursor should be done:{i.MoveNext()}");
 
             i.Key = "key 1";
             i.MoveNext();
             i.Add("key 2", "Row 2");
-            System.Console.Out.WriteLine("Cursor should still be OK:" + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
+            Console.Out.WriteLine($"Cursor should still be OK: [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
             i.MoveNext();
-            System.Console.Out.WriteLine("Cursor should still be OK:" + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
+            Console.Out.WriteLine($"Cursor should still be OK: [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
             i.MoveNext();
-            System.Console.Out.WriteLine("Cursor should still be OK:" + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
-            System.Console.Out.WriteLine("Cursor should be done:" + i.MoveNext());
+            Console.Out.WriteLine($"Cursor should still be OK: [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
+            Console.Out.WriteLine($"Cursor should be done:{i.MoveNext()}");
 
             i.Key = "key 4";
-            System.Console.Out.WriteLine("Cursor should still be OK:" + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
+            Console.Out.WriteLine($"Cursor should still be OK: [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
             i.MoveNext();
-            System.Console.Out.WriteLine("Cursor should still be OK:" + " [" +
-                                                                ((DictionaryEntry)i.Current).Key + "] \"" +
-                                                                ((DictionaryEntry)i.Current).Value + "\"");
-            System.Console.Out.WriteLine("Cursor should be done:" + i.MoveNext());
+            Console.Out.WriteLine($"Cursor should still be OK: [{((DictionaryEntry)i.Current).Key}] \"{((DictionaryEntry)i.Current).Value}\"");
+            Console.Out.WriteLine($"Cursor should be done:{i.MoveNext()}");
 
             i.Key = "key 2";
             i.MoveNext();
@@ -216,18 +197,18 @@ namespace nom.tam.util
             i.Add("Row 1.5");
             i.Add("key 1.7", "Row 1.7");
             i.Add("Row 1.9");
-            System.Console.Out.WriteLine("Cursor should point to 2:" + ((System.Collections.DictionaryEntry)i.Current).Key);
+            Console.Out.WriteLine($"Cursor should point to 2:{((DictionaryEntry)i.Current).Key}");
             i.Key = "key 1.7";
-            System.Console.Out.WriteLine("Cursor should point to 1.7:" + ((System.Collections.DictionaryEntry)i.Current).Key);
+            Console.Out.WriteLine($"Cursor should point to 1.7:{((DictionaryEntry)i.Current).Key}");
         }
 
-        public static void show(System.String descrip, HashedList h)
+        public static void show(String descrip, HashedList h)
         {
-            System.Console.Out.WriteLine(descrip + " : [" + h.Count + "]");
+            Console.Out.WriteLine($"{descrip} : [{h.Count}]");
             Object[] o = h.toArray();
             for (int i = 0; i < o.Length; i += 1)
             {
-                System.Console.Out.WriteLine("  " + o[i]);
+                Console.Out.WriteLine($"  {o[i]}");
             }
         }
 
@@ -238,194 +219,194 @@ namespace nom.tam.util
         public void TestCollection()
         {
 
-	        HashedList h1 = new HashedList();
-	        HashedList h2 = new HashedList();
-        	
-	        Cursor i = h1.GetCursor(-1);
-	       
-	        // Add a few unkeyed rows.
-	        h1.Add("Row 1");
-	        h1.Add("Row 2");
-	        h1.Add("Row 3");
-        	
-	        Assertion.AssertEquals("Adding unkeyed rows", 3, h1.Count); 
-        	
-	        Assertion.AssertEquals("Has row 1", true, h1.ContainsValue("Row 1"));
-	        Assertion.AssertEquals("Has row 2", true, h1.ContainsValue("Row 2"));
-	        h1.RemoveValue("Row 2");
-	        Assertion.AssertEquals("Has row 1", true, h1.ContainsValue("Row 1"));
-	        Assertion.AssertEquals("Has row 2", false, h1.ContainsValue("Row 2"));
-        	
-	        Assertion.AssertEquals("Delete unkeyed rows", 2, h1.Count);
-	        h1.Clear();
-	        Assertion.AssertEquals("Cleared unkeyed rows", 0, h1.Count);
-        	
+            HashedList h1 = new HashedList();
+            HashedList h2 = new HashedList();
+
+            Cursor i = h1.GetCursor(-1);
+
+            // Add a few unkeyed rows.
+            h1.Add("Row 1");
+            h1.Add("Row 2");
+            h1.Add("Row 3");
+
+            Assertion.AssertEquals("Adding unkeyed rows", 3, h1.Count);
+
+            Assertion.AssertEquals("Has row 1", true, h1.ContainsValue("Row 1"));
+            Assertion.AssertEquals("Has row 2", true, h1.ContainsValue("Row 2"));
+            h1.RemoveValue("Row 2");
+            Assertion.AssertEquals("Has row 1", true, h1.ContainsValue("Row 1"));
+            Assertion.AssertEquals("Has row 2", false, h1.ContainsValue("Row 2"));
+
+            Assertion.AssertEquals("Delete unkeyed rows", 2, h1.Count);
+            h1.Clear();
+            Assertion.AssertEquals("Cleared unkeyed rows", 0, h1.Count);
+
 
             // Add few Keyed rows.
-	        h1.Add("key 1", "Row 1");
-	        h1.Add("key 2", "Row 2");
-	        h1.Add("key 3", "Row 3");
-        	
-	        Assertion.AssertEquals("Adding keyed rows", 3, h1.Count);
+            h1.Add("key 1", "Row 1");
+            h1.Add("key 2", "Row 2");
+            h1.Add("key 3", "Row 3");
+
+            Assertion.AssertEquals("Adding keyed rows", 3, h1.Count);
 
             Assertion.AssertEquals("Has Row 1", true, h1.ContainsValue("Row 1"));
-	        Assertion.AssertEquals("Has key 1", true, h1.ContainsKey("key 1"));
-            Assertion.AssertEquals("Has Row 2", true, h1.ContainsValue("Row 2"));
-	        Assertion.AssertEquals("Has key 2", true, h1.ContainsKey("key 2"));
-            Assertion.AssertEquals("Has Row 3", true, h1.ContainsValue("Row 3"));
-	        Assertion.AssertEquals("Has key 3", true, h1.ContainsKey("key 3"));
-        	
-	        h1.RemoveKey("key 2");
-	        Assertion.AssertEquals("Delete keyed row", 2, h1.Count);
-            Assertion.AssertEquals("Has Row 1", true, h1.ContainsValue("Row 1"));
-	        Assertion.AssertEquals("Has key 1", true, h1.ContainsKey("key 1"));
-            Assertion.AssertEquals("Has Row 2", false, h1.ContainsValue("Row 2"));
-	        Assertion.AssertEquals("Has key 2", false, h1.ContainsKey("key 2"));
-            Assertion.AssertEquals("Has Row 3", true, h1.ContainsValue("Row 3"));
-	        Assertion.AssertEquals("Has key 3", true, h1.ContainsKey("key 3"));
-        	
-	        h1.Clear();
-	        Assertion.AssertEquals("Clear keyed rows", 0, h1.Count);
-        	
-	        h1.Add("key 1", "Row 1");
-	        h1.Add("key 2", "Row 2");
-	        h1.Add("key 3", "Row 3");
-	        Assertion.AssertEquals("Re-Adding keyed rows", 3, h1.Count);
+            Assertion.AssertEquals("Has key 1", true, h1.ContainsKey("key 1"));
             Assertion.AssertEquals("Has Row 2", true, h1.ContainsValue("Row 2"));
             Assertion.AssertEquals("Has key 2", true, h1.ContainsKey("key 2"));
-        	
-	        h2.Add("key 4", "Row 4");
-	        h2.Add("key 5", "Row 5");
-        	
-	        Assertion.AssertEquals("containsAll(beforeAdd)", false, h1.ContainsAll(h2));
-        	
-	        h1.AddAll(h2);
-        	
-	        Assertion.AssertEquals("AddAll()", 5, h1.Count);
-	        Assertion.AssertEquals("ContainsAll(afterAdd)", true, h1.ContainsAll(h2));
-	        Assertion.AssertEquals("has row 4", true, h1.ContainsValue("Row 4"));
-	        h1.RemoveValue("Row 4");
-	        Assertion.AssertEquals("dropped row 4", false, h1.ContainsValue("Row 4"));
-	        Assertion.AssertEquals("ContainsAll(afterDrop)", false, h1.ContainsAll(h2));
-        	
-	        Assertion.AssertEquals("Empty(false)", false, h1.Empty);
-	        h1.RemoveValue("Row 1");
-	        h1.RemoveValue("Row 2");
-	        h1.RemoveValue("Row 3");
-	        h1.RemoveValue("Row 5");
-	        Assertion.AssertEquals("isEmpty(true)", true, h1.Empty);
-	        h1.Add("Row 1");
-	        h1.Add("Row 2");
-	        h1.Add("Row 3");
-	        h1.AddAll(h2);
-	        Assertion.AssertEquals("Adding back", 5, h1.Count);
-	        h1.RemoveAll(h2);
-        	
-	        Assertion.AssertEquals("removeAll()", 3, h1.Count);
-	        h1.AddAll(h2);
-        	
-	        Assertion.AssertEquals("Adding back again", 5, h1.Count);
-	        h1.RetainAll(h2);
-	        Assertion.AssertEquals("retainAll()", 2, h1.Count);
-        	
+            Assertion.AssertEquals("Has Row 3", true, h1.ContainsValue("Row 3"));
+            Assertion.AssertEquals("Has key 3", true, h1.ContainsKey("key 3"));
+
+            h1.RemoveKey("key 2");
+            Assertion.AssertEquals("Delete keyed row", 2, h1.Count);
+            Assertion.AssertEquals("Has Row 1", true, h1.ContainsValue("Row 1"));
+            Assertion.AssertEquals("Has key 1", true, h1.ContainsKey("key 1"));
+            Assertion.AssertEquals("Has Row 2", false, h1.ContainsValue("Row 2"));
+            Assertion.AssertEquals("Has key 2", false, h1.ContainsKey("key 2"));
+            Assertion.AssertEquals("Has Row 3", true, h1.ContainsValue("Row 3"));
+            Assertion.AssertEquals("Has key 3", true, h1.ContainsKey("key 3"));
+
+            h1.Clear();
+            Assertion.AssertEquals("Clear keyed rows", 0, h1.Count);
+
+            h1.Add("key 1", "Row 1");
+            h1.Add("key 2", "Row 2");
+            h1.Add("key 3", "Row 3");
+            Assertion.AssertEquals("Re-Adding keyed rows", 3, h1.Count);
+            Assertion.AssertEquals("Has Row 2", true, h1.ContainsValue("Row 2"));
+            Assertion.AssertEquals("Has key 2", true, h1.ContainsKey("key 2"));
+
+            h2.Add("key 4", "Row 4");
+            h2.Add("key 5", "Row 5");
+
+            Assertion.AssertEquals("containsAll(beforeAdd)", false, h1.ContainsAll(h2));
+
+            h1.AddAll(h2);
+
+            Assertion.AssertEquals("AddAll()", 5, h1.Count);
+            Assertion.AssertEquals("ContainsAll(afterAdd)", true, h1.ContainsAll(h2));
+            Assertion.AssertEquals("has row 4", true, h1.ContainsValue("Row 4"));
+            h1.RemoveValue("Row 4");
+            Assertion.AssertEquals("dropped row 4", false, h1.ContainsValue("Row 4"));
+            Assertion.AssertEquals("ContainsAll(afterDrop)", false, h1.ContainsAll(h2));
+
+            Assertion.AssertEquals("Empty(false)", false, h1.Empty);
+            h1.RemoveValue("Row 1");
+            h1.RemoveValue("Row 2");
+            h1.RemoveValue("Row 3");
+            h1.RemoveValue("Row 5");
+            Assertion.AssertEquals("isEmpty(true)", true, h1.Empty);
+            h1.Add("Row 1");
+            h1.Add("Row 2");
+            h1.Add("Row 3");
+            h1.AddAll(h2);
+            Assertion.AssertEquals("Adding back", 5, h1.Count);
+            h1.RemoveAll(h2);
+
+            Assertion.AssertEquals("removeAll()", 3, h1.Count);
+            h1.AddAll(h2);
+
+            Assertion.AssertEquals("Adding back again", 5, h1.Count);
+            h1.RetainAll(h2);
+            Assertion.AssertEquals("retainAll()", 2, h1.Count);
+
         }
-        
+
         [Test]
         public void TestIterator()
         {
-        	
-	        HashedList h1 = new HashedList();
-        	
-	        h1.Add("key 4", "Row 4");
-	        h1.Add("key 5", "Row 5");
-        	
-        	
-	        Cursor j = h1.GetCursor();
-	        Assertion.AssertEquals("next1", true, j.MoveNext());
-	        Assertion.AssertEquals("TestIter1", "Row 4", (String) ((DictionaryEntry)j.Current).Value);
-	        Assertion.AssertEquals("next2", true, j.MoveNext());
+
+            HashedList h1 = new HashedList();
+
+            h1.Add("key 4", "Row 4");
+            h1.Add("key 5", "Row 5");
+
+
+            Cursor j = h1.GetCursor();
+            Assertion.AssertEquals("next1", true, j.MoveNext());
+            Assertion.AssertEquals("TestIter1", "Row 4", (String)((DictionaryEntry)j.Current).Value);
+            Assertion.AssertEquals("next2", true, j.MoveNext());
             Assertion.AssertEquals("TestIter2", "Row 5", (String)((DictionaryEntry)j.Current).Value);
-	        Assertion.AssertEquals("next3", false, j.MoveNext());
-        	
-	        h1.Clear();
-        	
-	        h1.Add("key 1", "Row 1");
-	        h1.Add("key 2", "Row 2");
-	        h1.Add("Row 3");
-	        h1.Add("key 4", "Row 4");
-	        h1.Add("Row 5");
+            Assertion.AssertEquals("next3", false, j.MoveNext());
+
+            h1.Clear();
+
+            h1.Add("key 1", "Row 1");
+            h1.Add("key 2", "Row 2");
+            h1.Add("Row 3");
+            h1.Add("key 4", "Row 4");
+            h1.Add("Row 5");
 
             Assertion.AssertEquals("Before remove", true, h1.ContainsValue("Row 2"));
-	        j = h1.GetCursor();
-	        j.MoveNext();
-	        j.MoveNext();
-	        j.Remove();  // Should get rid of second row
-	        Assertion.AssertEquals("After remove", false, h1.ContainsValue("Row 2"));
+            j = h1.GetCursor();
+            j.MoveNext();
+            j.MoveNext();
+            j.Remove();  // Should get rid of second row
+            Assertion.AssertEquals("After remove", false, h1.ContainsValue("Row 2"));
             Assertion.AssertEquals("n3", true, j.MoveNext());
             Assertion.AssertEquals("n3v", "Row 3", (String)((DictionaryEntry)j.Current).Value);
-	        Assertion.AssertEquals("n4", true, j.MoveNext());
+            Assertion.AssertEquals("n4", true, j.MoveNext());
             Assertion.AssertEquals("n4v", "Row 4", (String)((DictionaryEntry)j.Current).Value);
-	        Assertion.AssertEquals("n5", true, j.MoveNext());
+            Assertion.AssertEquals("n5", true, j.MoveNext());
             Assertion.AssertEquals("n5v", "Row 5", (String)((DictionaryEntry)j.Current).Value);
-	        Assertion.AssertEquals("n6", false, j.MoveNext());
+            Assertion.AssertEquals("n6", false, j.MoveNext());
         }
-        
+
         [Test]
         public void TestCursor()
         {
-        	
-	        HashedList h1 = new HashedList();
-        	
-	        h1.Add("key 1", "Row 1");
-	        h1.Add("Row 3");
-	        h1.Add("key 4", "Row 4");
-	        h1.Add("Row 5");
-        	
-	        Cursor j = (Cursor) h1.GetCursor(0);
-            Assertion.AssertEquals("n1xv", "Row 1", (String) ((DictionaryEntry)j.Current).Value);
-            j.MoveNext();
-            Assertion.AssertEquals("n1xv", "Row 3", (String) ((DictionaryEntry)j.Current).Value);
-        	
-	        Assertion.AssertEquals("No Row 2", false, h1.ContainsKey("key 2"));
-	        Assertion.AssertEquals("No Row 2", false, h1.ContainsValue("Row 2"));
-	        j.Key = "key 1";
-            Assertion.AssertEquals("setKey()", "Row 1", (String) ((DictionaryEntry)j.Current).Value);
-            j.MoveNext();
-	        j.Add("key 2", "Row 2");
-	        Assertion.AssertEquals("has Row 2", true, h1.ContainsValue("Row 2"));
-	        Assertion.AssertEquals("after add", "Row 3", (String) ((DictionaryEntry)j.Current).Value);
-        	
 
-	        j.Key = "key 4";
-            Assertion.AssertEquals("setKey(1)", "Row 4", (String) ((DictionaryEntry)j.Current).Value);
+            HashedList h1 = new HashedList();
+
+            h1.Add("key 1", "Row 1");
+            h1.Add("Row 3");
+            h1.Add("key 4", "Row 4");
+            h1.Add("Row 5");
+
+            Cursor j = (Cursor)h1.GetCursor(0);
+            Assertion.AssertEquals("n1xv", "Row 1", (String)((DictionaryEntry)j.Current).Value);
             j.MoveNext();
-            Assertion.AssertEquals("setKey(2)", "Row 5", (String) ((DictionaryEntry)j.Current).Value);
-	        Assertion.AssertEquals("setKey(3)", false, j.MoveNext());
-        	
-        	
-	        j.Key = "key 2";
-            Assertion.AssertEquals("setKey(4)", "Row 2", (String) ((DictionaryEntry)j.Current).Value);
+            Assertion.AssertEquals("n1xv", "Row 3", (String)((DictionaryEntry)j.Current).Value);
+
+            Assertion.AssertEquals("No Row 2", false, h1.ContainsKey("key 2"));
+            Assertion.AssertEquals("No Row 2", false, h1.ContainsValue("Row 2"));
+            j.Key = "key 1";
+            Assertion.AssertEquals("setKey()", "Row 1", (String)((DictionaryEntry)j.Current).Value);
             j.MoveNext();
-            Assertion.AssertEquals("setKey(5)", "Row 3", (String) ((DictionaryEntry)j.Current).Value);
-	        j.Add("Row 3.5");
-	        j.Add("Row 3.6");
-	        Assertion.AssertEquals("After add", 7, h1.Count);
-        	
-	        j = h1.GetCursor("key 2");
-	        j.Add("Row 1.5");
-	        j.Add("key 1.7", "Row 1.7");
-	        j.Add("Row 1.9");
-            Assertion.AssertEquals("next() after adds", "Row 2", (String) ((DictionaryEntry)j.Current).Value);
-	        j.Key = "key 1.7";
-            Assertion.AssertEquals("next() after adds", "Row 1.7", (String) ((DictionaryEntry)j.Current).Value);
+            j.Add("key 2", "Row 2");
+            Assertion.AssertEquals("has Row 2", true, h1.ContainsValue("Row 2"));
+            Assertion.AssertEquals("after add", "Row 3", (String)((DictionaryEntry)j.Current).Value);
+
+
+            j.Key = "key 4";
+            Assertion.AssertEquals("setKey(1)", "Row 4", (String)((DictionaryEntry)j.Current).Value);
+            j.MoveNext();
+            Assertion.AssertEquals("setKey(2)", "Row 5", (String)((DictionaryEntry)j.Current).Value);
+            Assertion.AssertEquals("setKey(3)", false, j.MoveNext());
+
+
+            j.Key = "key 2";
+            Assertion.AssertEquals("setKey(4)", "Row 2", (String)((DictionaryEntry)j.Current).Value);
+            j.MoveNext();
+            Assertion.AssertEquals("setKey(5)", "Row 3", (String)((DictionaryEntry)j.Current).Value);
+            j.Add("Row 3.5");
+            j.Add("Row 3.6");
+            Assertion.AssertEquals("After add", 7, h1.Count);
+
+            j = h1.GetCursor("key 2");
+            j.Add("Row 1.5");
+            j.Add("key 1.7", "Row 1.7");
+            j.Add("Row 1.9");
+            Assertion.AssertEquals("next() after adds", "Row 2", (String)((DictionaryEntry)j.Current).Value);
+            j.Key = "key 1.7";
+            Assertion.AssertEquals("next() after adds", "Row 1.7", (String)((DictionaryEntry)j.Current).Value);
             j.MoveNext();
             j.MovePrevious();
-            Assertion.AssertEquals("prev(1)", "Row 1.7", (String) ((DictionaryEntry)j.Current).Value);
+            Assertion.AssertEquals("prev(1)", "Row 1.7", (String)((DictionaryEntry)j.Current).Value);
             j.MovePrevious();
-            Assertion.AssertEquals("prev(2)", "Row 1.5", (String) ((DictionaryEntry)j.Current).Value);
-	        Assertion.AssertEquals("prev(3)", true, j.MovePrevious());
-            Assertion.AssertEquals("prev(4)", "Row 1", (String) ((DictionaryEntry)j.Current).Value);
-	        Assertion.AssertEquals("prev(5)", false, j.MovePrevious());
+            Assertion.AssertEquals("prev(2)", "Row 1.5", (String)((DictionaryEntry)j.Current).Value);
+            Assertion.AssertEquals("prev(3)", true, j.MovePrevious());
+            Assertion.AssertEquals("prev(4)", "Row 1", (String)((DictionaryEntry)j.Current).Value);
+            Assertion.AssertEquals("prev(5)", false, j.MovePrevious());
         }
 
     }

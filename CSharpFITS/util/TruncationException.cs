@@ -10,18 +10,18 @@ namespace nom.tam.util
    *
    * Use is subject to license terms
    */
-	using System;
-	
-	public class TruncationException:Exception
-	{
+    using System;
+
+    public class TruncationException : Exception
+    {
         /// <summary>
         /// Truncation Exception handling class
         /// </summary>
-		public TruncationException():base()
-		{
-		}
-		public TruncationException(String msg):base(msg)
-		{
-		}
-	}
+		public TruncationException() : base()
+        {
+        }
+        public TruncationException(String msg) : base(msg)
+        {
+        }
+    }
 }

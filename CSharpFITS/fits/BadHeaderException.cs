@@ -1,6 +1,6 @@
 namespace nom.tam.fits
 {
-	using System;
+    using System;
     /*
      * Copyright: Thomas McGlynn 1997-2007.
      * 
@@ -12,27 +12,27 @@ namespace nom.tam.fits
      * Use is subject to license terms
      */
 
-	/// <summary>This exception indicates that an error
-	/// was detected while parsing a FITS header record.
-	/// </summary>
-	public class BadHeaderException:FitsException
-	{
-		/// <summary>
-		/// Constructor without arguments
-		/// </summary>
-        public BadHeaderException():base()
-		{
-		}
+    /// <summary>This exception indicates that an error
+    /// was detected while parsing a FITS header record.
+    /// </summary>
+    public class BadHeaderException : FitsException
+    {
+        /// <summary>
+        /// Constructor without arguments
+        /// </summary>
+        public BadHeaderException() : base()
+        {
+        }
         /// <summary>
         /// Constructor with String argument for exception message
         /// </summary>
         /// <param name="msg"></param>
-		//public BadHeaderException(String msg):base(msg)
-		//{
-		//}
+        //public BadHeaderException(String msg):base(msg)
+        //{
+        //}
 
         public BadHeaderException(String msg, Exception innerException) : base(msg, innerException)
         {
         }
-}
+    }
 }

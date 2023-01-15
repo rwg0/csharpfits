@@ -1,7 +1,5 @@
 // Member of the utility package.
 
-using System.Runtime.InteropServices;
-
 namespace nom.tam.util
 {
     /*
@@ -95,7 +93,6 @@ namespace nom.tam.util
                     }
                     else if (e.Current == null)
                     {
-                        continue;
                     }
                 }
                 if (i == ((Array)o).Length)
@@ -119,7 +116,6 @@ namespace nom.tam.util
                     }
                     else if (((Array)o).GetValue(i) == null)
                     {
-                        continue;
                     }
                 }
                 if (i == ((Array)o).Length)
@@ -149,18 +145,18 @@ namespace nom.tam.util
 
                     if (t.HasElementType && t.GetElementType().IsPrimitive)
                     {
-                        var array = (Array) o;
+                        var array = (Array)o;
                         if (array.Length > 0)
                         {
-                            IEnumerator i = ((Array) o).GetEnumerator();
+                            IEnumerator i = ((Array)o).GetEnumerator();
                             i.MoveNext();
 
-                            size += array.Length*ComputeSize(i.Current);
+                            size += array.Length * ComputeSize(i.Current);
                         }
                     }
                     else
                     {
-                        for (IEnumerator i = ((Array)o).GetEnumerator(); i.MoveNext(); )
+                        for (IEnumerator i = ((Array)o).GetEnumerator(); i.MoveNext();)
                         {
                             size += ComputeSize(i.Current);
                         }
@@ -202,7 +198,7 @@ namespace nom.tam.util
             {
                 if (IsArrayOfArrays(o))
                 {
-                    for (IEnumerator i = ((Array)o).GetEnumerator(); i.MoveNext(); )
+                    for (IEnumerator i = ((Array)o).GetEnumerator(); i.MoveNext();)
                     {
                         result += CountElements(i.Current);
                     }
@@ -230,7 +226,7 @@ namespace nom.tam.util
         /// <param name="o">The object to be copied.</param>
         /*TODO: If multidimension array is passed as an input, it is getting flattened out
         TODO: For normal multidimension, we get an error because NewInstance always returns Jagged array.*/
-        public static System.Object DeepClone(System.Object o)
+        public static Object DeepClone(Object o)
         {
             if (o == null)
             {
@@ -242,7 +238,7 @@ namespace nom.tam.util
             }
 
             Array a = (Array)o;
-            if (ArrayFuncs.IsArrayOfArrays(o))
+            if (IsArrayOfArrays(o))
             {
                 Array result = NewInstance(o.GetType().GetElementType(), a.Length);
                 for (int i = 0; i < result.Length; ++i)
@@ -259,7 +255,7 @@ namespace nom.tam.util
                 {
                     lengths[i] = a.GetLength(i);
                 }
-                Array result = ArrayFuncs.NewInstance(o.GetType().GetElementType(), lengths);
+                Array result = NewInstance(o.GetType().GetElementType(), lengths);
                 Array.Copy(a, result, a.Length);
 
                 return result;
@@ -402,8 +398,7 @@ namespace nom.tam.util
                         }
                         if (i != ndim - 1)
                         {
-                            Object x;
-                            x = ((Array)o).GetValue(0);
+                            var x = ((Array)o).GetValue(0);
 
                             // If first element of array is null, then check for other elements.
                             if (x == null)
@@ -540,7 +535,7 @@ namespace nom.tam.util
             }
             else if (o.GetType().IsArray)
             {
-                return CountDimensions(o) + "D array of " + GetBaseClass(o).FullName;
+                return $"{CountDimensions(o)}D array of {GetBaseClass(o).FullName}";
             }
             else
             {
@@ -591,7 +586,7 @@ namespace nom.tam.util
             if (IsArrayOfArrays(input))
             {
                 int i = offset;
-                for (IEnumerator e = ((Array)input).GetEnumerator(); e.MoveNext(); )
+                for (IEnumerator e = ((Array)input).GetEnumerator(); e.MoveNext();)
                 {
                     Object a = (Object)e.Current;
                     result += DoFlatten(a, output, offset + result);
@@ -646,7 +641,7 @@ namespace nom.tam.util
                 index[i] = 0;
             }
 
-            for (IEnumerator i = input.GetEnumerator(); i.MoveNext() && NextIndex(index, dimens); )
+            for (IEnumerator i = input.GetEnumerator(); i.MoveNext() && NextIndex(index, dimens);)
             {
                 //NewInstance call creates a jagged array. So we cannot set the value using Array.SetValue
                 //as it works for multi-dimensional arrays and not for jagged
@@ -750,8 +745,8 @@ namespace nom.tam.util
             Array o = Array.CreateInstance(cl, dim);
             if (o == null)
             {
-                String desc = cl + "[" + dim + "]";
-                throw new System.OutOfMemoryException("Unable to allocate array: " + desc);
+                String desc = $"{cl}[{dim}]";
+                throw new OutOfMemoryException($"Unable to allocate array: {desc}");
             }
             return o;
         }
@@ -849,7 +844,7 @@ namespace nom.tam.util
          TODO: If the passed arguments are multidimension Arrays, a[3,2] and b[2,3]
         and if they have the same elements then the return value is true. 
         (Should we return false?)*/
-      
+
         public static bool ArrayEquals(Object x, Object y, double tolf, double told)
         {
 
@@ -1076,7 +1071,7 @@ namespace nom.tam.util
         /// <param name="array">A possibly multidimensional array to be converted.</param>
         /// <param name="newType">The desired output type.  This should be one of the
         /// class descriptors for primitive numeric data, e.g., double.type.</param>		
-        public static System.Object MimicArray(System.Object array, System.Type newType)
+        public static Object MimicArray(Object array, Type newType)
         {
             if (array == null || !array.GetType().IsArray)
             {
@@ -1093,17 +1088,17 @@ namespace nom.tam.util
                 int[] dimens = new int[dims];
                 dimens[0] = xarray.Length; // Leave other dimensions at 0.
 
-                mimic = ArrayFuncs.NewInstance(newType, dimens);
+                mimic = NewInstance(newType, dimens);
 
                 for (int i = 0; i < xarray.Length; i += 1)
                 {
-                    System.Object temp = MimicArray(xarray[i], newType);
-                    ((System.Object[])mimic)[i] = temp;
+                    Object temp = MimicArray(xarray[i], newType);
+                    ((Object[])mimic)[i] = temp;
                 }
             }
             else
             {
-                mimic = ArrayFuncs.NewInstance(newType, GetDimensions(array));
+                mimic = NewInstance(newType, GetDimensions(array));
             }
 
             return mimic;
@@ -1120,10 +1115,10 @@ namespace nom.tam.util
         /// array must already be fully allocated.
         /// 
         /// </param>
-        public static void CopyArray(System.Object original, System.Object copy)
+        public static void CopyArray(Object original, Object copy)
         {
-            System.String oname = original.GetType().FullName;
-            System.String cname = copy.GetType().FullName;
+            String oname = original.GetType().FullName;
+            String cname = copy.GetType().FullName;
 
             if (!original.GetType().IsArray || !copy.GetType().IsArray ||
                !original.GetType().GetElementType().Equals(copy.GetType().GetElementType()) ||
@@ -1134,8 +1129,8 @@ namespace nom.tam.util
 
             if (original.GetType().GetArrayRank() >= 2)
             {
-                System.Object[] x = (System.Object[])original;
-                System.Object[] y = (System.Object[])copy;
+                Object[] x = (Object[])original;
+                Object[] y = (Object[])copy;
                 for (int i = 0; i < x.Length; i += 1)
                 {
                     CopyArray(x, y);

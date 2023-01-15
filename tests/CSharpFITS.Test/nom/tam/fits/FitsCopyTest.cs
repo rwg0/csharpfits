@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using NUnit.Framework;
-
-using nom.tam.fits;
-using nom.tam.image;
 using nom.tam.util;
 
 namespace nom.tam.fits
@@ -31,11 +26,11 @@ namespace nom.tam.fits
                 {
                     if (i == 0)
                     {
-                        System.Console.Out.WriteLine("\n\nPrimary header:\n");
+                        Console.Out.WriteLine("\n\nPrimary header:\n");
                     }
                     else
                     {
-                        System.Console.Out.WriteLine("\n\nExtension " + i + ":\n");
+                        Console.Out.WriteLine($"\n\nExtension {i}:\n");
                     }
                     i += 1;
                     h.Info();

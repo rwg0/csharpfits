@@ -1,15 +1,15 @@
 namespace nom.tam.util
 {
- /*
-  * Copyright: Thomas McGlynn 1997-2007.
-  * 
-  * The CSharpFITS package is a C# port of Tom McGlynn's
-  * nom.tam.fits Java package, initially ported by  Samuel Carliles
-  *
-  * Copyright: 2007 Virtual Observatory - India. 
-  *
-  * Use is subject to license terms
-  */
+    /*
+     * Copyright: Thomas McGlynn 1997-2007.
+     * 
+     * The CSharpFITS package is a C# port of Tom McGlynn's
+     * nom.tam.fits Java package, initially ported by  Samuel Carliles
+     *
+     * Copyright: 2007 Virtual Observatory - India. 
+     *
+     * Use is subject to license terms
+     */
     using System;
 
     /// <summary>This class provides mechanisms for
@@ -77,7 +77,7 @@ namespace nom.tam.util
             }
         }
         /// <summary>Set the truncation fill character.The character to be used in subsequent truncations.</summary>
-        
+
         public char TruncationFill
         {
             set
@@ -125,17 +125,17 @@ namespace nom.tam.util
         /// computed though it may be faster to calculate
         /// them than to read in the extra bytes in the class file.
         /// </summary>
-        private static double[] tenpow;
+        private static readonly double[] tenpow;
 
         /// <summary>What index of tenpow is 10^0</summary>
-        private static int zeropow;
+        private static readonly int zeropow;
 
         /// <summary>Digits.  We could handle other bases
         /// by extending or truncating this list and changing
         /// the division by 10 (and it's factors) at various
         /// locations.
         /// </summary>
-        private static byte[] digits = new byte[] { (byte)SupportClass.Identity('0'), (byte)SupportClass.Identity('1'), (byte)SupportClass.Identity('2'), (byte)SupportClass.Identity('3'), (byte)SupportClass.Identity('4'), (byte)SupportClass.Identity('5'), (byte)SupportClass.Identity('6'), (byte)SupportClass.Identity('7'), (byte)SupportClass.Identity('8'), (byte)SupportClass.Identity('9') };
+        private static readonly byte[] digits = new byte[] { (byte)SupportClass.Identity('0'), (byte)SupportClass.Identity('1'), (byte)SupportClass.Identity('2'), (byte)SupportClass.Identity('3'), (byte)SupportClass.Identity('4'), (byte)SupportClass.Identity('5'), (byte)SupportClass.Identity('6'), (byte)SupportClass.Identity('7'), (byte)SupportClass.Identity('8'), (byte)SupportClass.Identity('9') };
         #endregion
 
         /// <summary>Set the range of real numbers that will be formatted in
@@ -167,28 +167,28 @@ namespace nom.tam.util
         /// <returns>offset of next unused character in input buffer.</returns>
         public int format(int val, byte[] buf, int off, int len)
         {
-                #region Sam's code
-                            /*/  byte[] num = BitConverter.GetBytes(val);
-                              if (num.Length <= len)
-                              {
-                                  for (int i = 0; i < num.Length; ++i)
-                                  {
-                                      buf[i + off] = num[i];
-                                  }
+            #region Sam's code
+            /*/  byte[] num = BitConverter.GetBytes(val);
+              if (num.Length <= len)
+              {
+                  for (int i = 0; i < num.Length; ++i)
+                  {
+                      buf[i + off] = num[i];
+                  }
 
-                                  return off + num.Length;
-                              }
-                              else
-                              {
-                                  truncationFiller(buf, off, len);
-                                  return off + len;
-                              }*/
+                  return off + num.Length;
+              }
+              else
+              {
+                  truncationFiller(buf, off, len);
+                  return off + len;
+              }*/
 
-                # endregion
+            #endregion
             //   #region oldcrap
 
             // Special case
-            if (val == System.Int32.MinValue)
+            if (val == Int32.MinValue)
             {
                 if (len > 10 || (!truncateOnOverflow && buf.Length - off > 10))
                 {
@@ -201,7 +201,7 @@ namespace nom.tam.util
                 }
             }
 
-            int pos = System.Math.Abs(val);
+            int pos = Math.Abs(val);
 
             // First count the number of characters in the result.
             // Otherwise we need to use an intermediary buffer.
@@ -274,27 +274,27 @@ namespace nom.tam.util
         /// <returns> offset of next unused character in input buffer.</returns>
         public int format(long val, byte[] buf, int off, int len)
         {
-             #region Sam's Code 
-                    /*  byte[] num = BitConverter.GetBytes(val);
-                      if (num.Length <= len)
-                      {
-                          for (int i = 0; i < num.Length; ++i)
-                          {
-                              buf[i + off] = num[i];
-                          }
+            #region Sam's Code 
+            /*  byte[] num = BitConverter.GetBytes(val);
+              if (num.Length <= len)
+              {
+                  for (int i = 0; i < num.Length; ++i)
+                  {
+                      buf[i + off] = num[i];
+                  }
 
-                          return off + num.Length;
-                      }
-                      else
-                      {
-                          truncationFiller(buf, off, len);
-                          return off + len;
-                      }*/
+                  return off + num.Length;
+              }
+              else
+              {
+                  truncationFiller(buf, off, len);
+                  return off + len;
+              }*/
             #endregion
             //  #region oldcrap
 
             // Special case
-            if (val == System.Int64.MinValue)
+            if (val == Int64.MinValue)
             {
                 if (len > 19 || (!truncateOnOverflow && buf.Length - off > 19))
                 {
@@ -307,7 +307,7 @@ namespace nom.tam.util
                 }
             }
 
-            long pos = System.Math.Abs(val);
+            long pos = Math.Abs(val);
 
             // First count the number of characters in the result.
             // Otherwise we need to use an intermediary buffer.
@@ -505,25 +505,25 @@ namespace nom.tam.util
         public int format(float val, byte[] buf, int off, int len)
         {
             #region Sam's code
-                        /*  byte[] num = BitConverter.GetBytes(val);
-                          if (num.Length <= len)
-                          {
-                              for (int i = 0; i < num.Length; ++i)
-                              {
-                                  buf[i + off] = num[i];
-                              }
+            /*  byte[] num = BitConverter.GetBytes(val);
+              if (num.Length <= len)
+              {
+                  for (int i = 0; i < num.Length; ++i)
+                  {
+                      buf[i + off] = num[i];
+                  }
 
-                              return off + num.Length;
-                          }
-                          else
-                          {
-                              truncationFiller(buf, off, len);
-                              return off + len;
-                          }*/
+                  return off + num.Length;
+              }
+              else
+              {
+                  truncationFiller(buf, off, len);
+                  return off + len;
+              }*/
             #endregion
             //  #region oldcrap
 
-            float pos = (float)System.Math.Abs(val);
+            float pos = (float)Math.Abs(val);
 
             //int minlen, actlen;
 
@@ -532,11 +532,11 @@ namespace nom.tam.util
             {
                 return format("0.0", buf, off, len);
             }
-            else if (System.Single.IsNaN(val))
+            else if (Single.IsNaN(val))
             {
                 return format("NaN", buf, off, len);
             }
-            else if (System.Single.IsInfinity(val))
+            else if (Single.IsInfinity(val))
             {
                 if (val > 0)
                 {
@@ -549,7 +549,7 @@ namespace nom.tam.util
             }
 
             //UPGRADE_WARNING: Narrowing conversions may produce unexpected results in C#. 'ms-help://MS.VSCC.2003/commoner/redir/redirect.htm?keyword="jlca1042"'
-            int power = (int)System.Math.Floor((System.Math.Log(pos) * ilog10));
+            int power = (int)Math.Floor((Math.Log(pos) * ilog10));
             int shift = 8 - power;
             float scale;
             float scale2 = 1;
@@ -573,7 +573,7 @@ namespace nom.tam.util
 
             // Parse the float bits.
 
-           //   int bits = float.floatToIntBits(pos);
+            //   int bits = float.floatToIntBits(pos);
             byte[] bytes = BitConverter.GetBytes(pos);
             int bits = BitConverter.ToInt32(bytes, 0);
             // The exponent should be a little more than 23
@@ -682,7 +682,7 @@ namespace nom.tam.util
             #endregion
             // #region oldcrap
 
-            double pos = System.Math.Abs(val);
+            double pos = Math.Abs(val);
 
             //int minlen, actlen;
 
@@ -691,11 +691,11 @@ namespace nom.tam.util
             {
                 return format("0.0", buf, off, len);
             }
-            else if (System.Double.IsNaN(val))
+            else if (Double.IsNaN(val))
             {
                 return format("NaN", buf, off, len);
             }
-            else if (System.Double.IsInfinity(val))
+            else if (Double.IsInfinity(val))
             {
                 if (val > 0)
                 {
@@ -708,7 +708,7 @@ namespace nom.tam.util
             }
 
             //UPGRADE_WARNING: Narrowing conversions may produce unexpected results in C#. 'ms-help://MS.VSCC.2003/commoner/redir/redirect.htm?keyword="jlca1042"'
-            int power = (int)(System.Math.Log(pos) * ilog10);
+            int power = (int)(Math.Log(pos) * ilog10);
             int shift = 17 - power;
             double scale;
             double scale2 = 1;
@@ -786,7 +786,7 @@ namespace nom.tam.util
 
             // First get the minimum size for the number
 
-            double pos = System.Math.Abs(val);
+            double pos = Math.Abs(val);
             bool simple = false;
             int minSize;
             int maxSize;
@@ -841,7 +841,7 @@ namespace nom.tam.util
                 else
                 {
                     minSize = 2;
-                    maxSize = 1 + System.Math.Abs(exp) + lmant;
+                    maxSize = 1 + Math.Abs(exp) + lmant;
                 }
             }
             if (val < 0)
@@ -879,7 +879,7 @@ namespace nom.tam.util
 
             if (simple)
             {
-                return System.Math.Abs(mantissa(mant, lmant, exp, simple, buf, off, len));
+                return Math.Abs(mantissa(mant, lmant, exp, simple, buf, off, len));
             }
             else
             {
@@ -1079,7 +1079,6 @@ namespace nom.tam.util
             {
                 throw new TruncationException();
             }
-            return;
         }
 
         /// <summary>Fill the buffer with blanks to align a field.</summary>
@@ -1113,7 +1112,7 @@ namespace nom.tam.util
 
                 for (int i = 0; i < tenpow.Length; i += 1)
                 {
-                    tenpow[i] = System.Math.Pow(10, i + min);
+                    tenpow[i] = Math.Pow(10, i + min);
                 }
                 zeropow = -min;
 

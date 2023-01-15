@@ -1,11 +1,10 @@
 using System;
 using nom.tam.fits;
-using ArrayFuncs = nom.tam.util.ArrayFuncs;
 using NUnit.Framework;
 
 namespace nom.tam.util
 {
-   
+
     [TestFixture]
     public class ArrayFuncsTester
     {
@@ -16,7 +15,7 @@ namespace nom.tam.util
         {
 
             // Check GetBaseClass(), GetBaseLength() and ComputeSize() methods
-            int[, ,] test1 = new int[10, 9, 8];
+            int[,,] test1 = new int[10, 9, 8];
             bool[][] test2 = new bool[4][];
             test2[0] = new bool[5];
             test2[1] = new bool[4];

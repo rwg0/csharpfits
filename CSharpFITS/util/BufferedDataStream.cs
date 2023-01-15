@@ -14,7 +14,6 @@ namespace nom.tam.util
     using System;
     using System.Collections;
     using System.IO;
-    using System.Runtime.InteropServices;
 
     /// <summary>
     /// summary description for BufferedDataStream.
@@ -208,7 +207,7 @@ namespace nom.tam.util
 
             if (!o.GetType().IsArray)
             {
-                throw new IOException("Invalid object passed to BufferedDataStream.ReadArray:" + o.GetType().FullName);
+                throw new IOException($"Invalid object passed to BufferedDataStream.ReadArray:{o.GetType().FullName}");
             }
 
             // Is this a multidimensional array?  If so process recursively.
@@ -270,7 +269,7 @@ namespace nom.tam.util
                 }
                 else
                 {
-                    throw new IOException("Invalid object passed to BufferedDataStream.ReadArray: " + o.GetType().FullName);
+                    throw new IOException($"Invalid object passed to BufferedDataStream.ReadArray: {o.GetType().FullName}");
                 }
             }
 
@@ -690,7 +689,7 @@ namespace nom.tam.util
         {
             if (!o.GetType().IsArray)
             {
-                throw new IOException("Invalid object passed to BufferedDataStream.WriteArray() - " + o.GetType().FullName);
+                throw new IOException($"Invalid object passed to BufferedDataStream.WriteArray() - {o.GetType().FullName}");
             }
             Type type = o.GetType();
             int rank = ((Array)o).Rank;
@@ -759,7 +758,7 @@ namespace nom.tam.util
                 }
                 else
                 {
-                    throw new IOException("Invalid object passed to BufferedDataStream.WriteArray: " + o.GetType().FullName);
+                    throw new IOException($"Invalid object passed to BufferedDataStream.WriteArray: {o.GetType().FullName}");
                 }
             }
         }

@@ -11,13 +11,13 @@ namespace nom.tam.util
      * Use is subject to license terms
      */
     using System;
-	using System.Collections;
+    using System.Collections;
 
     /// <Remarks>This interface collects some information about C# primitives.</Remarks>
     public class PrimitiveInfo
-	{
+    {
         /// <summary>Sizes.</summary>
-        public readonly static Hashtable sizes;
+        public static readonly Hashtable sizes;
 
         static PrimitiveInfo()
         {

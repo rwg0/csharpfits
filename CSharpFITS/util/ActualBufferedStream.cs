@@ -11,7 +11,7 @@ namespace nom.tam.util
      * Copyright: 2007 Virtual Observatory - India.
      *
      * Use is subject to license terms
-     */ 
+     */
     using System;
     using System.IO;
 
@@ -72,14 +72,7 @@ namespace nom.tam.util
             {
                 _s.Write(_writeBuf, 0, _writeBufPos);
 
-                if (count < _bufferSize)
-                {
-                    _writeTemp = count;
-                }
-                else
-                {
-                    _writeTemp = _bufferSize;
-                }
+                _writeTemp = count < _bufferSize ? count : _bufferSize;
 
                 Array.Copy(buffer, offset, _writeBuf, 0, _writeTemp);
                 count -= _writeTemp;
@@ -116,7 +109,7 @@ namespace nom.tam.util
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            for (_readTemp = _readBufEnd - _readBufStart, _readEOS = false; _readTemp < count && !_readEOS; )
+            for (_readTemp = _readBufEnd - _readBufStart, _readEOS = false; _readTemp < count && !_readEOS;)
             {
                 // _readTemp is what's left in the buffer
                 Array.Copy(_readBuf, _readBufStart, buffer, offset, _readTemp);

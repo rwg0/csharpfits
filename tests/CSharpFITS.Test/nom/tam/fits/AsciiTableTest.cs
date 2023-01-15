@@ -1,13 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using System.ComponentModel;
-
 using NUnit.Framework;
-
-using nom.tam.fits;
-using nom.tam.image;
 using nom.tam.util;
 
 namespace nom.tam.fits
@@ -29,10 +22,10 @@ namespace nom.tam.fits
 
             for (int i = 0; i < realCol.Length; i += 1)
             {
-                strCol[i] = "ABC" + (realCol[i]) + "CDE";
+                strCol[i] = $"ABC{(realCol[i])}CDE";
             }
 
-            System.Console.Out.WriteLine("**** Create a table from the data kernel****");
+            Console.Out.WriteLine("**** Create a table from the data kernel****");
 
             return new Object[] { realCol, intCol, longCol, doubleCol, strCol };
         }
@@ -53,7 +46,7 @@ namespace nom.tam.fits
             f.Write(bf);
             bf.Flush();
             bf.Close();
-           
+
         }
 
         [Test]
@@ -72,8 +65,8 @@ namespace nom.tam.fits
         {
             Fits f = MakeAsciiTable();
             WriteFile(f, "at1.fits");
-           
-            System.Console.Out.WriteLine("\n\n**** Create a table column by Column ****");
+
+            Console.Out.WriteLine("\n\n**** Create a table column by Column ****");
 
             f = new Fits("at1.fits", FileAccess.Read);
             AsciiTableHDU hdu = (AsciiTableHDU)f.GetHDU(1);
@@ -88,16 +81,16 @@ namespace nom.tam.fits
 
             for (int j = 0; j < 5; j += 1)
             {
-                Assertion.AssertEquals("ByCol:" + j,
+                Assertion.AssertEquals($"ByCol:{j}",
                                         true,
                                          ArrayFuncs.ArrayEquals(inputs[j], outputs[j], Math.Pow(10, -6), Math.Pow(10, -14)));
             }
-          
+
         }
 
         Object[] GetRow(int i)
         {
-            return new Object[] { new int[] { i }, new float[] { i }, new String[] { "Str" + i } };
+            return new Object[] { new int[] { i }, new float[] { i }, new String[] { $"Str{i}" } };
         }
 
         Object[] GetRowBlock(int max)
@@ -107,7 +100,7 @@ namespace nom.tam.fits
             {
                 ((int[])o[0])[i] = i;
                 ((float[])o[1])[i] = i;
-                ((String[])o[2])[i] = "Str" + i;
+                ((String[])o[2])[i] = $"Str{i}";
             }
             return o;
         }
@@ -118,7 +111,7 @@ namespace nom.tam.fits
             AsciiTable data = new AsciiTable();
             Object[] row = new Object[4];
 
-            System.Console.Out.WriteLine("\n\n**** Create a table column by Row ****");
+            Console.Out.WriteLine("\n\n**** Create a table column by Row ****");
 
             for (int i = 0; i < 50; i += 1)
             {
@@ -128,7 +121,7 @@ namespace nom.tam.fits
             f.AddHDU(Fits.MakeHDU(data));
 
             WriteFile(f, "at2.fits");
-          
+
             // Read it back.
             f = new Fits("at2.fits", FileAccess.Read);
 
@@ -151,9 +144,9 @@ namespace nom.tam.fits
 
             for (int j = 0; j < 3; j += 1)
             {
-                Assertion.AssertEquals("ByRow:" + j, true, ArrayFuncs.ArrayEquals(input[j], output[j], Math.Pow(10, -6), Math.Pow(10, -14)));
+                Assertion.AssertEquals($"ByRow:{j}", true, ArrayFuncs.ArrayEquals(input[j], output[j], Math.Pow(10, -6), Math.Pow(10, -14)));
             }
-            
+
         }
 
         public void ReadByRow()
@@ -167,15 +160,15 @@ namespace nom.tam.fits
             Console.WriteLine("Reading Table by Row");
             for (int i = 0; i < data.NRows; i += 1)
             {
-                Assertion.AssertEquals("Rows:" + i, 50, data.NRows);
+                Assertion.AssertEquals($"Rows:{i}", 50, data.NRows);
                 Object[] row = (Object[])data.GetRow(i);
-                Assertion.AssertEquals("Ascii Rows: float" + i, 1f, ((float[])cols[0])[i] / ((float[])row[0])[0], Math.Pow(10, -6));
-                Assertion.AssertEquals("Ascii Rows: int" + i, ((int[])cols[1])[i], ((int[])row[1])[0]);
-                Assertion.AssertEquals("Ascii Rows: long" + i, ((long[])cols[2])[i], ((long[])row[2])[0]);
-                Assertion.AssertEquals("Ascii Rows: double" + i, 1f, ((double[])cols[3])[i] / ((double[])row[3])[0], Math.Pow(10, -14));
+                Assertion.AssertEquals($"Ascii Rows: float{i}", 1f, ((float[])cols[0])[i] / ((float[])row[0])[0], Math.Pow(10, -6));
+                Assertion.AssertEquals($"Ascii Rows: int{i}", ((int[])cols[1])[i], ((int[])row[1])[0]);
+                Assertion.AssertEquals($"Ascii Rows: long{i}", ((long[])cols[2])[i], ((long[])row[2])[0]);
+                Assertion.AssertEquals($"Ascii Rows: double{i}", 1f, ((double[])cols[3])[i] / ((double[])row[3])[0], Math.Pow(10, -14));
                 String[] st = (String[])row[4];
                 st[0] = st[0].Trim();
-                Assertion.AssertEquals("Ascii Rows: Str" + i, ((String[])cols[4])[i], ((String[])row[4])[0]);
+                Assertion.AssertEquals($"Ascii Rows: Str{i}", ((String[])cols[4])[i], ((String[])row[4])[0]);
             }
         }
 
@@ -200,9 +193,9 @@ namespace nom.tam.fits
                         st[i] = st[i].Trim();
                     }
                 }
-                Assertion.AssertEquals("Ascii Columns:" + j, true, ArrayFuncs.ArrayEquals(cols[j], col, Math.Pow(10, -6), Math.Pow(10, -14)));
+                Assertion.AssertEquals($"Ascii Columns:{j}", true, ArrayFuncs.ArrayEquals(cols[j], col, Math.Pow(10, -6), Math.Pow(10, -14)));
             }
-        
+
         }
 
         public void ReadByElement()
@@ -221,7 +214,7 @@ namespace nom.tam.fits
                     Assertion.AssertEquals("Ascii readElement", true, ArrayFuncs.ArrayEquals(val, row[j]));
                 }
             }
-         
+
         }
 
         public void ModifyTable()
@@ -289,9 +282,9 @@ namespace nom.tam.fits
                     if (i != 6)
                     {
                         // Null
-                        Assertion.AssertEquals("f" + i, 1f, f2[i] / fx[i], Math.Pow(10, -6));
+                        Assertion.AssertEquals($"f{i}", 1f, f2[i] / fx[i], Math.Pow(10, -6));
                     }
-                    Assertion.AssertEquals("i" + i, iy[i], ix[i]);
+                    Assertion.AssertEquals($"i{i}", iy[i], ix[i]);
 
                     if (i == 4)
                     {
@@ -299,11 +292,11 @@ namespace nom.tam.fits
                     }
                     else
                     {
-                        Assertion.AssertEquals("l" + i, ly[i], lx[i]);
+                        Assertion.AssertEquals($"l{i}", ly[i], lx[i]);
                     }
 
-                    Assertion.AssertEquals("d" + i, 1f, dy[i] / dx[i], Math.Pow(10, -14));
-                    Assertion.AssertEquals("s" + i, sy[i], sx[i].Trim());
+                    Assertion.AssertEquals($"d{i}", 1f, dy[i] / dx[i], Math.Pow(10, -14));
+                    Assertion.AssertEquals($"s{i}", sy[i], sx[i].Trim());
                 }
             }
             Object[] r5 = (Object[])data.GetRow(5);
@@ -314,7 +307,7 @@ namespace nom.tam.fits
                 Assertion.AssertEquals("row5", true, ArrayFuncs.ArrayEquals(row[i], r5[i], Math.Pow(10, -6), Math.Pow(10, -14)));
 
             }
-       
+
             //Assertion.AssertEquals("row5", true, ArrayFuncs.ArrayEquals(row, r5, Math.Pow(10,-6), Math.Pow(10,-14)));
         }
 
@@ -392,7 +385,7 @@ namespace nom.tam.fits
 
         internal static void AssertEquals(string message, double expected, double actual, double delta = 0)
         {
-            Assert.AreEqual(expected, actual, delta, message );
+            Assert.AreEqual(expected, actual, delta, message);
         }
 
         internal static void AssertEquals(string message, float expected, float actual, double delta = 0)
