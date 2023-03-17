@@ -55,7 +55,7 @@ namespace nom.tam.fits
 
             HeaderCard p = new HeaderCard("KEY", "VALUE", "COMMENT");
             Assertion.AssertEquals("x1",
-                "KEY     = 'VALUE   '           / COMMENT                                        ",
+                "KEY     = 'VALUE'              / COMMENT                                        ",
                     p.ToString());
 
             p = new HeaderCard("KEY", 123, "COMMENT");

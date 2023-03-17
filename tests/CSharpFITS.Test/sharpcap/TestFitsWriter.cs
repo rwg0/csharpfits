@@ -13,6 +13,7 @@ namespace CSharpFITS_v1._1.tests.sharpcap
     public class TestFitsWriter
     {
         [Test]
+        [Explicit]
         public void TestBrokenFits()
         {
             var strm = File.OpenRead(@"C:\Users\robin\Downloads\M2-FITS-SC\M_2_Light_001.fits");

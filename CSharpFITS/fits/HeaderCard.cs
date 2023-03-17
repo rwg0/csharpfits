@@ -597,7 +597,7 @@ namespace nom.tam.fits
                         // left justify the string inside the quotes
                         buf.Append('\'');
                         buf.Append(val);
-                        if (buf.Length < 19)
+                        if (buf.Length < 19 && key == "XTENSION") // padding to 8 chars only required for XTENSION keyword now - see https://fits.gsfc.nasa.gov/standard30/fits_standard30aa.pdf , top of page 7
                         {
                             buf.Append(space80.Substring(0, 19 - buf.Length));
                         }
