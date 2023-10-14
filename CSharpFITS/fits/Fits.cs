@@ -649,6 +649,13 @@ namespace nom.tam.fits
                 }
                 catch (IOException e)
                 {
+                    if (NumberOfHDUs > 0)
+                    {
+                        var remaining = dataStr.Length - dataStr.Position;
+                        if (remaining < 65536)
+                            return; // some FITS writers seem to leave junk at the end of the file
+                    }
+
                     throw new FitsException($"IO error: {e.Message}", e);
                 }
             }
